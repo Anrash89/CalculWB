@@ -2,8 +2,12 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Калькулятор маржи Wildberries</title>
+  <title>Калькулятор маржи WB</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tom‑Select (поиск по списку категорий) -->
+  <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet" />
+
   <style>
     :root {
       --wb-purple: #a500ff;
@@ -15,138 +19,39 @@
       --success: #28a745;
       --danger: #dc3545;
     }
-
-    * { box-sizing: border-box; }
-
+    * { box-sizing: border-box; font-family: "Segoe UI", Arial, sans-serif; }
     body {
-      margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: var(--grey-100);
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 40px 16px;
-      color: var(--grey-900);
+      margin: 0; background: var(--grey-100); display: flex; justify-content: center; padding: 40px 16px;
     }
-
     .card {
-      width: 100%;
-      max-width: 620px;
-      background: var(--white);
-      border-radius: 16px;
-      padding: 32px 28px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      animation: fadeIn 0.8s ease-out;
+      width: 100%; max-width: 650px; background: var(--white); border-radius: 16px; padding: 32px 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08); animation: fade 0.8s ease-out;
     }
+    @keyframes fade { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:none;} }
+    h1 { margin: 0 0 28px; text-align: center; font-size: 1.9rem; color: var(--wb-purple); }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0);   }
+    .row { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; }
+    .row.three-col label { flex: 1 1 calc(33.333% - 16px); }
+    label { flex:1 1 200px; display:flex; flex-direction:column; font-size:0.95rem; color:var(--grey-600); }
+    select, input[type=number] {
+      margin-top: 6px; padding: 10px 12px; font-size:1rem; border:1px solid #ddd; border-radius:10px;
     }
+    select:focus, input:focus { border-color: var(--wb-purple); outline:none; box-shadow:0 0 0 3px rgba(165,0,255,.2); }
 
-    h1 {
-      margin: 0 0 28px;
-      text-align: center;
-      font-size: 1.8rem;
-      color: var(--wb-purple);
-    }
+    button { display:block; width:100%; max-width:260px; margin:0 auto; padding:14px 20px; font-size:1.1rem; font-weight:600;
+      color:var(--white); background:var(--wb-purple); border:0; border-radius:12px; cursor:pointer; transition:.25s all; }
+    button:hover { background:var(--wb-purple-dark); transform:translateY(-3px); box-shadow:0 8px 15px rgba(165,0,255,.25); }
+    button:active { transform:none; box-shadow:0 4px 10px rgba(165,0,255,.15); }
 
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
+    .output { margin-top:36px; border-top:1px solid #eee; padding-top:24px; opacity:0; animation:show .6s forwards; }
+    @keyframes show { to{opacity:1;} }
+    .output-item { display:flex; justify-content:space-between; margin-bottom:10px; font-size:1rem; }
+    .output-item span:first-child{ font-weight:600; }
+    .output-item span:last-child{ font-weight:600; color:var(--wb-purple); }
+    .positive{ color:var(--success) !important; }
+    .negative{ color:var(--danger) !important; }
 
-    label {
-      flex: 1 1 180px;
-      display: flex;
-      flex-direction: column;
-      font-size: 0.95rem;
-      color: var(--grey-600);
-    }
-
-    input[type="number"], select {
-      margin-top: 6px;
-      padding: 10px 12px;
-      font-size: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      transition: border-color 0.25s, box-shadow 0.25s;
-    }
-
-    input:focus, select:focus {
-      border-color: var(--wb-purple);
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(165, 0, 255, 0.2);
-    }
-
-    button {
-      display: inline-block;
-      width: 100%;
-      max-width: 260px;
-      margin: 0 auto;
-      padding: 14px 20px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--white);
-      background: var(--wb-purple);
-      border: 0;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
-    }
-
-    button:hover {
-      background: var(--wb-purple-dark);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 15px rgba(165, 0, 255, 0.25);
-    }
-
-    button:active {
-      transform: none;
-      box-shadow: 0 4px 10px rgba(165, 0, 255, 0.15);
-    }
-
-    .output {
-      margin-top: 36px;
-      border-top: 1px solid #eee;
-      padding-top: 24px;
-      opacity: 0;
-      animation: show 0.6s forwards ease-out;
-    }
-
-    @keyframes show { to { opacity: 1; } }
-
-    .output-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      font-size: 1rem;
-    }
-
-    .output-item span:first-child {
-      font-weight: 600;
-    }
-
-    .output-item span:last-child {
-      font-weight: 600;
-      color: var(--wb-purple);
-    }
-
-    .positive { color: var(--success) !important; }
-    .negative { color: var(--danger)  !important; }
-
-    .info {
-      margin-top: 24px;
-      font-size: 0.85rem;
-      color: var(--grey-600);
-      background: #fafafa;
-      border: 1px solid #eee;
-      border-radius: 10px;
-      padding: 14px 16px;
-      line-height: 1.5;
-    }
+    .info { margin-top:24px; font-size:.85rem; color:var(--grey-600); background:#fafafa; border:1px solid #eee; border-radius:10px; padding:14px 16px; line-height:1.5; }
   </style>
 </head>
 <body>
@@ -157,16 +62,14 @@
     <div class="row">
       <label>
         Категория
-        <select id="category" disabled>
-          <option>Загрузка…</option>
-        </select>
+        <select id="category" placeholder="Начните вводить…" disabled></select>
       </label>
       <label>
         Режим работы
         <select id="mode">
           <option value="commission_fbw">FBW (Склад WB)</option>
           <option value="commission_fbs">FBS (Маркетплейс)</option>
-          <option value="commission_dbs">DBS / DBW (Витрина)</option>
+          <option value="commission_dbs">DBS / DBW</option>
           <option value="commission_cc">C&C (Самовывоз)</option>
           <option value="commission_edbs">EDBS (Экспресс)</option>
           <option value="commission_reserve">Бронирование</option>
@@ -174,174 +77,133 @@
       </label>
     </div>
 
-    <!-- Базовые цены -->
+    <!-- Цены -->
     <div class="row">
-      <label>
-        Себестоимость, ₽
-        <input type="number" id="costPrice" value="1000" min="0" step="0.01" />
-      </label>
-      <label>
-        Цена продажи, ₽
-        <input type="number" id="sellingPrice" value="2500" min="0" step="0.01" />
-      </label>
+      <label> Себестоимость, ₽ <input type="number" id="costPrice" value="1000" min="0" step="0.01"> </label>
+      <label> Цена продажи, ₽ <input type="number" id="sellingPrice" value="2500" min="0" step="0.01"> </label>
     </div>
 
     <!-- Габариты -->
-    <div class="row">
-      <label>
-        Длина, см
-        <input type="number" id="length" value="20" min="0" step="0.1" />
-      </label>
-      <label>
-        Ширина, см
-        <input type="number" id="width" value="15" min="0" step="0.1" />
-      </label>
-      <label>
-        Высота, см
-        <input type="number" id="height" value="10" min="0" step="0.1" />
-      </label>
+    <div class="row three-col">
+      <label> Длина, см <input type="number" id="length" value="20" min="0" step="0.1"> </label>
+      <label> Ширина, см <input type="number" id="width" value="15" min="0" step="0.1"> </label>
+      <label> Высота, см <input type="number" id="height" value="10" min="0" step="0.1"> </label>
     </div>
 
-    <!-- Прочие расходы -->
+    <!-- Прочее -->
     <div class="row">
-      <label>
-        Хранение, ₽
-        <input type="number" id="storage" value="10" min="0" step="0.01" />
-      </label>
-      <label>
-        Прочие расходы, ₽
-        <input type="number" id="otherCosts" value="0" min="0" step="0.01" />
-      </label>
+      <label> Хранение, ₽ <input type="number" id="storage" value="10" min="0" step="0.01"> </label>
+      <label> Прочие расходы, ₽ <input type="number" id="otherCosts" value="0" min="0" step="0.01"> </label>
     </div>
 
     <button id="calculate">Рассчитать</button>
 
-    <!-- Вывод -->
-    <div id="results" class="output" style="display:none">
+    <div id="results" style="display:none" class="output">
       <div class="output-item"><span>Комиссия (вкл. НДС)</span><span id="commissionAmount">0 ₽</span></div>
       <div class="output-item"><span>Логистика (вкл. НДС)</span><span id="logisticsAmount">0 ₽</span></div>
       <div class="output-item"><span>Возмещение НДС</span><span id="vatRefund">0 ₽</span></div>
       <div class="output-item"><span>Общие расходы</span><span id="totalCosts">0 ₽</span></div>
       <div class="output-item"><span>Валовая прибыль</span><span id="grossProfit">0 ₽</span></div>
       <div class="output-item"><span>Налог на прибыль 20%</span><span id="profitTax">0 ₽</span></div>
-      <div class="output-item"><span>Чистая прибыль</span><span id="netProfit" class="positive">0 ₽</span></div>
-      <div class="output-item"><span>Маржа</span><span id="margin" class="positive">0%</span></div>
+      <div class="output-item"><span>Чистая прибыль</span><span id="netProfit">0 ₽</span></div>
+      <div class="output-item"><span>Маржа</span><span id="margin">0%</span></div>
     </div>
 
     <p class="info">
-      Комиссия подставляется по выбранной категории и режиму работы.<br>
-      Стоимость логистики: 75 ₽ за первый литр объёма + 15 ₽ за каждый следующий литр (все суммы с НДС 20 %). Возмещение НДС учитывается автоматически.
+      Категорию можно найти поиском — начните печатать, список фильтруется.<br>Логистика: 75 ₽ за первый литр + 15 ₽ за каждый следующий литр. Объём округляется вверх до целого литра (как на WB).
     </p>
   </div>
 
+  <!-- Tom‑Select -->
+  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+
   <script>
-    /* ============================================================
-       Настройки
-    ============================================================ */
-    const VAT_RATE = 0.20;        // 20 % НДС
-    const PROFIT_TAX_RATE = 0.20; // 20 % налог на прибыль
+    /* === Константы === */
+    const VAT = 0.20;             // НДС 20 %
+    const PROFIT_TAX = 0.20;      // Налог на прибыль 20 %
 
-    let categories = [];          // сюда загрузим JSON
+    let categories = [];
 
-    // Форматирование денег
-    function money(n) {
-      return n.toLocaleString('ru-RU', {
-        style: 'currency', currency: 'RUB', minimumFractionDigits: 2
-      });
-    }
+    // Формат денег
+    const money = n => n.toLocaleString('ru-RU', {style:'currency',currency:'RUB',minimumFractionDigits:2});
 
-    /* ============================================================
-       Подгружаем категории
-    ============================================================ */
+    /* === Загрузка категорий === */
     fetch('categories.json')
       .then(r => r.json())
       .then(data => {
         categories = data;
         const select = document.getElementById('category');
-        select.innerHTML = '';
-        categories.forEach(cat => {
-          const opt = document.createElement('option');
-          opt.value = cat.category;
-          opt.textContent = cat.category;
-          select.appendChild(opt);
-        });
+        select.innerHTML = data.map(c => `<option value="${c.category}">${c.category}</option>`).join('');
         select.disabled = false;
+        // подключаем Tom‑Select
+        new TomSelect(select, {
+          maxOptions: 5000,
+          sortField: {field:'text',direction:'asc'},
+          placeholder: 'Начните вводить…'
+        });
       })
-      .catch(err => {
-        console.error('Не удалось загрузить categories.json', err);
-        alert('Ошибка загрузки списка категорий — проверьте консоль.');
-      });
+      .catch(err => console.error('Failed to load categories', err));
 
-    /* ============================================================
-       Основная логика расчёта
-    ============================================================ */
-    document.getElementById('calculate').addEventListener('click', calculate);
+    /* === Расчёт === */
+    document.getElementById('calculate').addEventListener('click', calc);
 
-    function calculate() {
-      // Данные формы
-      const categoryName = document.getElementById('category').value;
-      const modeField = document.getElementById('mode').value;
+    function calc(){
+      const catName = document.getElementById('category').value;
+      const mode    = document.getElementById('mode').value;
 
-      const costPrice   = +document.getElementById('costPrice').value || 0;
-      const sellingPrice= +document.getElementById('sellingPrice').value || 0;
+      const costPrice    = +document.getElementById('costPrice').value||0;
+      const sellingPrice = +document.getElementById('sellingPrice').value||0;
 
-      const length = +document.getElementById('length').value || 0;
-      const width  = +document.getElementById('width').value  || 0;
-      const height = +document.getElementById('height').value || 0;
+      const L = +document.getElementById('length').value||0;
+      const W = +document.getElementById('width').value||0;
+      const H = +document.getElementById('height').value||0;
 
-      const storage = +document.getElementById('storage').value || 0;
-      const other   = +document.getElementById('otherCosts').value || 0;
+      const storage  = +document.getElementById('storage').value||0;
+      const otherExp = +document.getElementById('otherCosts').value||0;
 
-      // 1. Найти объект категории
-      const cat = categories.find(c => c.category === categoryName);
-      const commissionPercent = cat ? (+cat[modeField] || 0) : 0;
+      // --- комиссия ---
+      const cat = categories.find(c=>c.category===catName)||{};
+      const commissionPct = +cat[mode] || 0;
+      const commissionWithVat = (sellingPrice * commissionPct)/100;
+      const commissionVatRefund = commissionWithVat*VAT/(1+VAT);
 
-      // 2. Комиссия (с НДС)
-      const commissionWithVat = (sellingPrice * commissionPercent) / 100;
-      const commissionVatRefund = commissionWithVat * VAT_RATE / (1 + VAT_RATE);
+      // --- логистика ---
+      const litresRaw = (L*W*H)/1000;          // литры с десятыми
+      const litres = Math.ceil(litresRaw);      // округ вверх до целого
+      const logisticsWithVat = litres>0 ? 75 + Math.max(0,litres-1)*15 : 0;
+      const logisticsVatRefund = logisticsWithVat*VAT/(1+VAT);
 
-      // 3. Логистика по объёму (см³ → литры)
-      const litres = (length * width * height) / 1000; // 1000 см³ = 1 л
-      const logisticsWithVat = litres > 0 ? 75 + Math.max(0, litres - 1) * 15 : 0;
-      const logisticsVatRefund = logisticsWithVat * VAT_RATE / (1 + VAT_RATE);
+      // --- расходы ---
+      const totalCosts = costPrice + (commissionWithVat-commissionVatRefund) + (logisticsWithVat-logisticsVatRefund) + storage + otherExp;
 
-      // 4. Итоговые расходы с учётом возмещения НДС
-      const totalCosts = costPrice + (commissionWithVat - commissionVatRefund) +
-                         (logisticsWithVat - logisticsVatRefund) + storage + other;
-
-      // 5. Прибыль & налоги
+      // --- прибыль ---
       const grossProfit = sellingPrice - totalCosts;
-      const profitTax   = grossProfit > 0 ? grossProfit * PROFIT_TAX_RATE : 0;
+      const profitTax   = grossProfit>0 ? grossProfit*PROFIT_TAX : 0;
       const netProfit   = grossProfit - profitTax;
-      const margin      = sellingPrice ? (netProfit / sellingPrice) * 100 : 0;
+      const marginPct   = sellingPrice ? (netProfit/sellingPrice)*100 : 0;
 
-      /* --------------------------------------------------------
-         Вывод
-      -------------------------------------------------------- */
-      document.getElementById('commissionAmount').textContent = money(commissionWithVat);
-      document.getElementById('logisticsAmount').textContent  = money(logisticsWithVat);
-      document.getElementById('vatRefund').textContent        = money(commissionVatRefund + logisticsVatRefund);
-      document.getElementById('totalCosts').textContent       = money(totalCosts);
-      document.getElementById('grossProfit').textContent      = money(grossProfit);
-      document.getElementById('profitTax').textContent        = money(profitTax);
-      document.getElementById('netProfit').textContent        = money(netProfit);
-      document.getElementById('margin').textContent           = margin.toFixed(2) + '%';
+      // --- вывод ---
+      qs('commissionAmount').textContent = money(commissionWithVat);
+      qs('logisticsAmount').textContent  = money(logisticsWithVat);
+      qs('vatRefund').textContent        = money(commissionVatRefund+logisticsVatRefund);
+      qs('totalCosts').textContent       = money(totalCosts);
+      qs('grossProfit').textContent      = money(grossProfit);
+      qs('profitTax').textContent        = money(profitTax);
+      qs('netProfit').textContent        = money(netProfit);
+      qs('margin').textContent           = marginPct.toFixed(2)+'%';
 
-      // Цвет для прибыли / маржи
-      const profitEl = document.getElementById('netProfit');
-      const marginEl = document.getElementById('margin');
-      [profitEl, marginEl].forEach(el => {
-        el.classList.remove('positive', 'negative');
-        el.classList.add(netProfit >= 0 ? 'positive' : 'negative');
+      // цвет
+      ['netProfit','margin'].forEach(id=>{
+        const el=qs(id); el.classList.toggle('positive', netProfit>=0);
+        el.classList.toggle('negative', netProfit<0);
       });
 
-      // Показать блок результатов
-      const res = document.getElementById('results');
-      res.style.display = 'block';
-      res.classList.remove('output'); // перезапуск анимации
-      void res.offsetWidth;
-      res.classList.add('output');
+      // показать
+      const res=document.getElementById('results');
+      res.style.display='block'; res.classList.remove('output'); void res.offsetWidth; res.classList.add('output');
     }
+
+    const qs = id => document.getElementById(id);
   </script>
 </body>
 </html>
