@@ -4,54 +4,34 @@
   <meta charset="UTF-8" />
   <title>Калькулятор маржи WB</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Tom‑Select (поиск по списку категорий) -->
+  
+  <!-- Tom‑Select (быстрый поиск по 7 000 позициям) -->
   <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet" />
-
+  
   <style>
-    :root {
-      --wb-purple: #a500ff;
-      --wb-purple-dark: #8a00d9;
-      --grey-900: #333;
-      --grey-600: #666;
-      --grey-100: #f7f7f7;
-      --white: #ffffff;
-      --success: #28a745;
-      --danger: #dc3545;
-    }
-    * { box-sizing: border-box; font-family: "Segoe UI", Arial, sans-serif; }
-    body {
-      margin: 0; background: var(--grey-100); display: flex; justify-content: center; padding: 40px 16px;
-    }
-    .card {
-      width: 100%; max-width: 650px; background: var(--white); border-radius: 16px; padding: 32px 28px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08); animation: fade 0.8s ease-out;
-    }
-    @keyframes fade { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:none;} }
-    h1 { margin: 0 0 28px; text-align: center; font-size: 1.9rem; color: var(--wb-purple); }
-
-    .row { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; }
-    .row.three-col label { flex: 1 1 calc(33.333% - 16px); }
-    label { flex:1 1 200px; display:flex; flex-direction:column; font-size:0.95rem; color:var(--grey-600); }
-    select, input[type=number] {
-      margin-top: 6px; padding: 10px 12px; font-size:1rem; border:1px solid #ddd; border-radius:10px;
-    }
-    select:focus, input:focus { border-color: var(--wb-purple); outline:none; box-shadow:0 0 0 3px rgba(165,0,255,.2); }
-
-    button { display:block; width:100%; max-width:260px; margin:0 auto; padding:14px 20px; font-size:1.1rem; font-weight:600;
-      color:var(--white); background:var(--wb-purple); border:0; border-radius:12px; cursor:pointer; transition:.25s all; }
-    button:hover { background:var(--wb-purple-dark); transform:translateY(-3px); box-shadow:0 8px 15px rgba(165,0,255,.25); }
-    button:active { transform:none; box-shadow:0 4px 10px rgba(165,0,255,.15); }
-
-    .output { margin-top:36px; border-top:1px solid #eee; padding-top:24px; opacity:0; animation:show .6s forwards; }
-    @keyframes show { to{opacity:1;} }
-    .output-item { display:flex; justify-content:space-between; margin-bottom:10px; font-size:1rem; }
-    .output-item span:first-child{ font-weight:600; }
-    .output-item span:last-child{ font-weight:600; color:var(--wb-purple); }
-    .positive{ color:var(--success) !important; }
-    .negative{ color:var(--danger) !important; }
-
-    .info { margin-top:24px; font-size:.85rem; color:var(--grey-600); background:#fafafa; border:1px solid #eee; border-radius:10px; padding:14px 16px; line-height:1.5; }
+    :root{--wb-purple:#a500ff;--wb-purple-dark:#8a00d9;--grey-900:#333;--grey-600:#666;--grey-100:#f7f7f7;--white:#fff;--success:#28a745;--danger:#dc3545}
+    *{box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
+    body{margin:0;background:var(--grey-100);display:flex;justify-content:center;padding:40px 16px}
+    .card{width:100%;max-width:650px;background:var(--white);border-radius:16px;padding:32px 28px;box-shadow:0 10px 30px rgba(0,0,0,.08);animation:fade .8s ease-out}
+    @keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    h1{margin:0 0 28px;text-align:center;font-size:1.9rem;color:var(--wb-purple)}
+    .row{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:20px}
+    .row.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:560px){.row.three-col{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:420px){.row.three-col{grid-template-columns:1fr}}
+    label{flex:1 1 200px;display:flex;flex-direction:column;font-size:.95rem;color:var(--grey-600)}
+    select,input[type=number]{margin-top:6px;padding:10px 12px;font-size:1rem;border:1px solid #ddd;border-radius:10px;min-width:0}
+    select:focus,input:focus{border-color:var(--wb-purple);outline:none;box-shadow:0 0 0 3px rgba(165,0,255,.2)}
+    button{display:block;width:100%;max-width:260px;margin:0 auto;padding:14px 20px;font-size:1.1rem;font-weight:600;color:var(--white);background:var(--wb-purple);border:0;border-radius:12px;cursor:pointer;transition:.25s all}
+    button:hover{background:var(--wb-purple-dark);transform:translateY(-3px);box-shadow:0 8px 15px rgba(165,0,255,.25)}
+    button:active{transform:none;box-shadow:0 4px 10px rgba(165,0,255,.15)}
+    .output{margin-top:36px;border-top:1px solid #eee;padding-top:24px;opacity:0;animation:show .6s forwards}
+    @keyframes show{to{opacity:1}}
+    .output-item{display:flex;justify-content:space-between;margin-bottom:10px;font-size:1rem}
+    .output-item span:first-child{font-weight:600}
+    .output-item span:last-child{font-weight:600;color:var(--wb-purple)}
+    .positive{color:var(--success)!important}.negative{color:var(--danger)!important}
+    .info{margin-top:24px;font-size:.85rem;color:var(--grey-600);background:#fafafa;border:1px solid #eee;border-radius:10px;padding:14px 16px;line-height:1.5}
   </style>
 </head>
 <body>
@@ -92,8 +72,8 @@
 
     <!-- Прочее -->
     <div class="row">
-      <label> Хранение, ₽ <input type="number" id="storage" value="10" min="0" step="0.01"> </label>
-      <label> Прочие расходы, ₽ <input type="number" id="otherCosts" value="0" min="0" step="0.01"> </label>
+      <label> Хранение, ₽ <input type="number" id="storage" value="10" min="0" step="0.01"></label>
+      <label> Прочие расходы, ₽ <input type="number" id="otherCosts" value="0" min="0" step="0.01"></label>
     </div>
 
     <button id="calculate">Рассчитать</button>
@@ -110,100 +90,62 @@
     </div>
 
     <p class="info">
-      Категорию можно найти поиском — начните печатать, список фильтруется.<br>Логистика: 75 ₽ за первый литр + 15 ₽ за каждый следующий литр. Объём округляется вверх до целого литра (как на WB).
+      В списке отображаются все 7 000 строк, включая дубли. Вводите пару букв — Tom‑Select мгновенно отфильтрует.<br>
+      Логистика: 75 ₽ за 1‑й литр + 15 ₽ за каждый следующий (объём округляется вверх).
     </p>
   </div>
 
-  <!-- Tom‑Select -->
   <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
-
   <script>
-    /* === Константы === */
-    const VAT = 0.20;             // НДС 20 %
-    const PROFIT_TAX = 0.20;      // Налог на прибыль 20 %
+    const VAT=0.20, PROFIT_TAX=0.20;
+    let categories=[];
+    const money=n=>n.toLocaleString('ru-RU',{style:'currency',currency:'RUB',minimumFractionDigits:2});
 
-    let categories = [];
-
-    // Формат денег
-    const money = n => n.toLocaleString('ru-RU', {style:'currency',currency:'RUB',minimumFractionDigits:2});
-
-    /* === Загрузка категорий === */
+    /* === Загрузка categories.json: value = индекс, чтобы не терять дубли === */
     fetch('categories.json')
-      .then(r => r.json())
-      .then(data => {
-        categories = data;
-        const select = document.getElementById('category');
-        select.innerHTML = data.map(c => `<option value="${c.category}">${c.category}</option>`).join('');
-        select.disabled = false;
-        // подключаем Tom‑Select
-        new TomSelect(select, {
-          maxOptions: 5000,
-          sortField: {field:'text',direction:'asc'},
-          placeholder: 'Начните вводить…'
-        });
+      .then(r=>r.json())
+      .then(data=>{
+        categories=data;
+        const sel=document.getElementById('category');
+        sel.innerHTML=data.map((c,i)=>`<option value="${i}">${c.category}</option>`).join('');
+        sel.disabled=false;
+        new TomSelect(sel,{maxOptions:9999,placeholder:'Начните вводить…',sortField:{field:'text',direction:'asc'}});
       })
-      .catch(err => console.error('Failed to load categories', err));
+      .catch(err=>console.error('categories.json load error',err));
 
-    /* === Расчёт === */
-    document.getElementById('calculate').addEventListener('click', calc);
+    document.getElementById('calculate').addEventListener('click',calc);
 
     function calc(){
-      const catName = document.getElementById('category').value;
-      const mode    = document.getElementById('mode').value;
+      const idx=parseInt(document.getElementById('category').value,10);
+      const mode=document.getElementById('mode').value;
+      const cat=categories[idx]||{};
 
-      const costPrice    = +document.getElementById('costPrice').value||0;
-      const sellingPrice = +document.getElementById('sellingPrice').value||0;
+      const L=+qs('length').value||0,W=+qs('width').value||0,H=+qs('height').value||0;
+      const cost=+qs('costPrice').value||0,sell=+qs('sellingPrice').value||0;
+      const storage=+qs('storage').value||0,other=+qs('otherCosts').value||0;
 
-      const L = +document.getElementById('length').value||0;
-      const W = +document.getElementById('width').value||0;
-      const H = +document.getElementById('height').value||0;
+      const commPct=+cat[mode]||0;
+      const commWithVat=(sell*commPct)/100,commVatRefund=commWithVat*VAT/(1+VAT);
+      const litres=Math.ceil((L*W*H)/1000);
+      const logWithVat=litres?75+Math.max(0,litres-1)*15:0;
+      const logVatRefund=logWithVat*VAT/(1+VAT);
+      const costs=cost+(commWithVat-commVatRefund)+(logWithVat-logVatRefund)+storage+other;
+      const gross=sell-costs; const pTax=gross>0?gross*PROFIT_TAX:0; const net=gross-pTax; const margin=sell?net/sell*100:0;
 
-      const storage  = +document.getElementById('storage').value||0;
-      const otherExp = +document.getElementById('otherCosts').value||0;
+      out('commissionAmount',money(commWithVat));
+      out('logisticsAmount',money(logWithVat));
+      out('vatRefund',money(commVatRefund+logVatRefund));
+      out('totalCosts',money(costs));
+      out('grossProfit',money(gross));
+      out('profitTax',money(pTax));
+      out('netProfit',money(net));
+      out('margin',margin.toFixed(2)+'%');
 
-      // --- комиссия ---
-      const cat = categories.find(c=>c.category===catName)||{};
-      const commissionPct = +cat[mode] || 0;
-      const commissionWithVat = (sellingPrice * commissionPct)/100;
-      const commissionVatRefund = commissionWithVat*VAT/(1+VAT);
-
-      // --- логистика ---
-      const litresRaw = (L*W*H)/1000;          // литры с десятыми
-      const litres = Math.ceil(litresRaw);      // округ вверх до целого
-      const logisticsWithVat = litres>0 ? 75 + Math.max(0,litres-1)*15 : 0;
-      const logisticsVatRefund = logisticsWithVat*VAT/(1+VAT);
-
-      // --- расходы ---
-      const totalCosts = costPrice + (commissionWithVat-commissionVatRefund) + (logisticsWithVat-logisticsVatRefund) + storage + otherExp;
-
-      // --- прибыль ---
-      const grossProfit = sellingPrice - totalCosts;
-      const profitTax   = grossProfit>0 ? grossProfit*PROFIT_TAX : 0;
-      const netProfit   = grossProfit - profitTax;
-      const marginPct   = sellingPrice ? (netProfit/sellingPrice)*100 : 0;
-
-      // --- вывод ---
-      qs('commissionAmount').textContent = money(commissionWithVat);
-      qs('logisticsAmount').textContent  = money(logisticsWithVat);
-      qs('vatRefund').textContent        = money(commissionVatRefund+logisticsVatRefund);
-      qs('totalCosts').textContent       = money(totalCosts);
-      qs('grossProfit').textContent      = money(grossProfit);
-      qs('profitTax').textContent        = money(profitTax);
-      qs('netProfit').textContent        = money(netProfit);
-      qs('margin').textContent           = marginPct.toFixed(2)+'%';
-
-      // цвет
-      ['netProfit','margin'].forEach(id=>{
-        const el=qs(id); el.classList.toggle('positive', netProfit>=0);
-        el.classList.toggle('negative', netProfit<0);
-      });
-
-      // показать
-      const res=document.getElementById('results');
-      res.style.display='block'; res.classList.remove('output'); void res.offsetWidth; res.classList.add('output');
+      ['netProfit','margin'].forEach(id=>{qs(id).classList.toggle('positive',net>=0);qs(id).classList.toggle('negative',net<0)});
+      const res=qs('results');res.style.display='block';res.classList.remove('output');void res.offsetWidth;res.classList.add('output');
     }
 
-    const qs = id => document.getElementById(id);
+    const qs=id=>document.getElementById(id),out=(id,val)=>qs(id).textContent=val;
   </script>
 </body>
 </html>
