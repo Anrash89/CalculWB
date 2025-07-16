@@ -1,362 +1,347 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Калькулятор Маржи Товара</title>
-    <style>
-        :root {
-            --wb-purple: #A500FF; /* Основной цвет Wildberries */
-            --wb-light-purple: #E0BFFF; /* Светлый оттенок для акцентов */
-            --wb-dark-grey: #333;
-            --wb-medium-grey: #666;
-            --wb-light-grey: #f0f0f0;
-            --wb-white: #ffffff;
-            --success-green: #28a745;
-            --error-red: #dc3545;
-        }
+  <meta charset="UTF-8" />
+  <title>Калькулятор маржи Wildberries</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --wb-purple: #a500ff;
+      --wb-purple-dark: #8a00d9;
+      --grey-900: #333;
+      --grey-600: #666;
+      --grey-100: #f7f7f7;
+      --white: #ffffff;
+      --success: #28a745;
+      --danger: #dc3545;
+    }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: var(--wb-light-grey);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            color: var(--wb-dark-grey);
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .calculator-container {
-            background-color: var(--wb-white);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 550px;
-            box-sizing: border-box;
-            animation: fadeIn 0.8s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        h2 {
-            text-align: center;
-            color: var(--wb-purple);
-            margin-bottom: 30px;
-            font-size: 2em;
-            font-weight: bold;
-        }
-        .input-group {
-            margin-bottom: 20px;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--wb-medium-grey);
-            font-size: 0.95em;
-        }
-        .input-group input[type="number"] {
-            width: calc(100% - 24px);
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            font-size: 1.1em;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .input-group input[type="number"]:focus {
-            border-color: var(--wb-purple);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(165, 0, 255, 0.2);
-        }
-        .input-group .dimensions-inputs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .input-group .dimensions-inputs input {
-            flex: 1 1 calc(50% - 10px); /* Two inputs per row on smaller screens */
-            min-width: 120px; /* Ensure inputs don't get too small */
-        }
-        @media (min-width: 480px) {
-            .input-group .dimensions-inputs input {
-                flex: 1 1 calc(25% - 10px); /* Four inputs per row on larger screens */
-            }
-        }
+    * { box-sizing: border-box; }
 
-        .button-container {
-            text-align: center;
-            margin-top: 35px;
-        }
-        button {
-            background-color: var(--wb-purple);
-            color: var(--wb-white);
-            padding: 15px 30px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            width: 100%;
-            max-width: 250px;
-            font-weight: bold;
-        }
-        button:hover {
-            background-color: #8a00d9; /* Slightly darker purple */
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(165, 0, 255, 0.3);
-        }
-        button:active {
-            transform: translateY(0);
-            box-shadow: 0 4px 10px rgba(165, 0, 255, 0.2);
-        }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--grey-100);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 16px;
+      color: var(--grey-900);
+    }
 
-        .results {
-            margin-top: 35px;
-            border-top: 1px solid var(--wb-light-grey);
-            padding-top: 25px;
-            animation: resultsFadeIn 0.6s ease-out forwards;
-            opacity: 0; /* Start hidden for animation */
-        }
-        @keyframes resultsFadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .results-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px dashed #eee;
-            font-size: 1.05em;
-        }
-        .results-item:last-child {
-            border-bottom: none;
-        }
-        .results-item span:first-child {
-            font-weight: 600;
-            color: var(--wb-dark-grey);
-        }
-        .results-item span:last-child {
-            color: var(--wb-purple);
-            font-weight: bold;
-        }
-        .results-item.profit span:last-child {
-            color: var(--success-green);
-        }
-        .results-item.loss span:last-child {
-            color: var(--error-red);
-        }
-        .info-text {
-            font-size: 0.85em;
-            color: var(--wb-medium-grey);
-            margin-top: 25px;
-            text-align: center;
-            line-height: 1.6;
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #eee;
-        }
+    .card {
+      width: 100%;
+      max-width: 620px;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      animation: fadeIn 0.8s ease-out;
+    }
 
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            .calculator-container {
-                padding: 20px;
-                margin: 10px;
-            }
-            h2 {
-                font-size: 1.6em;
-                margin-bottom: 20px;
-            }
-            button {
-                font-size: 1.1em;
-                padding: 12px 20px;
-            }
-            .results-item {
-                font-size: 1em;
-                padding: 10px 0;
-            }
-        }
-    </style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0);   }
+    }
+
+    h1 {
+      margin: 0 0 28px;
+      text-align: center;
+      font-size: 1.8rem;
+      color: var(--wb-purple);
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      flex: 1 1 180px;
+      display: flex;
+      flex-direction: column;
+      font-size: 0.95rem;
+      color: var(--grey-600);
+    }
+
+    input[type="number"], select {
+      margin-top: 6px;
+      padding: 10px 12px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--wb-purple);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(165, 0, 255, 0.2);
+    }
+
+    button {
+      display: inline-block;
+      width: 100%;
+      max-width: 260px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--wb-purple);
+      border: 0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+
+    button:hover {
+      background: var(--wb-purple-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(165, 0, 255, 0.25);
+    }
+
+    button:active {
+      transform: none;
+      box-shadow: 0 4px 10px rgba(165, 0, 255, 0.15);
+    }
+
+    .output {
+      margin-top: 36px;
+      border-top: 1px solid #eee;
+      padding-top: 24px;
+      opacity: 0;
+      animation: show 0.6s forwards ease-out;
+    }
+
+    @keyframes show { to { opacity: 1; } }
+
+    .output-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .output-item span:first-child {
+      font-weight: 600;
+    }
+
+    .output-item span:last-child {
+      font-weight: 600;
+      color: var(--wb-purple);
+    }
+
+    .positive { color: var(--success) !important; }
+    .negative { color: var(--danger)  !important; }
+
+    .info {
+      margin-top: 24px;
+      font-size: 0.85rem;
+      color: var(--grey-600);
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 14px 16px;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 <body>
-    <div class="calculator-container">
-        <h2>Калькулятор Маржи Товара</h2>
-        <div class="input-group">
-            <label for="costPrice">Себестоимость товара (руб.):</label>
-            <input type="number" id="costPrice" value="1000" min="0">
-        </div>
-        <div class="input-group">
-            <label for="sellingPrice">Цена продажи (руб.):</label>
-            <input type="number" id="sellingPrice" value="2500" min="0">
-        </div>
-        <div class="input-group">
-            <label for="commission">Комиссия маркетплейса (руб., включая НДС 20%):</label>
-            <input type="number" id="commission" value="250" min="0">
-        </div>
-        <div class="input-group">
-            <label>Габариты товара (см) и Вес (кг):</label>
-            <div class="dimensions-inputs">
-                <input type="number" id="length" placeholder="Длина (см)" value="20" min="0">
-                <input type="number" id="width" placeholder="Ширина (см)" value="15" min="0">
-                <input type="number" id="height" placeholder="Высота (см)" value="10" min="0">
-                <input type="number" id="weight" placeholder="Вес (кг)" value="0.5" min="0" step="0.01">
-            </div>
-        </div>
-        <div class="input-group">
-            <label for="costPerChargeableKg">Стоимость за расчетный кг (руб., включая НДС 20%):</label>
-            <input type="number" id="costPerChargeableKg" value="50" min="0" step="0.01">
-        </div>
-        <div class="input-group">
-            <label for="storage">Стоимость хранения (руб.):</label>
-            <input type="number" id="storage" value="10" min="0">
-        </div>
-        <div class="input-group">
-            <label for="otherCosts">Прочие расходы (руб.):</label>
-            <input type="number" id="otherCosts" value="0" min="0">
-        </div>
+  <div class="card">
+    <h1>Калькулятор маржи WB</h1>
 
-        <div class="button-container">
-            <button onclick="calculateMargin()">Рассчитать</button>
-        </div>
-
-        <div class="results" id="resultsSection">
-            <div class="results-item">
-                <span>Расчетный вес:</span>
-                <span id="chargeableWeight">0.00 кг</span>
-            </div>
-            <div class="results-item">
-                <span>Расчетная логистика:</span>
-                <span id="calculatedLogistics">0.00 руб.</span>
-            </div>
-            <div class="results-item">
-                <span>Общие расходы:</span>
-                <span id="totalCosts">0.00 руб.</span>
-            </div>
-            <div class="results-item">
-                <span>Валовая прибыль:</span>
-                <span id="grossProfit">0.00 руб.</span>
-            </div>
-            <div class="results-item">
-                <span>Налог на прибыль (20%):</span>
-                <span id="profitTax">0.00 руб.</span>
-            </div>
-            <div class="results-item profit">
-                <span>Чистая прибыль:</span>
-                <span id="netProfit">0.00 руб.</span>
-            </div>
-            <div class="results-item profit">
-                <span>Рентабельность:</span>
-                <span id="profitability">0.00%</span>
-            </div>
-        </div>
-        <p class="info-text">
-            * Расчет учитывает возмещение НДС 20% с комиссии и логистики. Налог на прибыль 20% применяется к чистой прибыли.
-            <br>Стоимость логистики теперь рассчитывается на основе габаритов, веса и введенной ставки за расчетный килограмм, используя внутренний объемный делитель 5000.
-        </p>
+    <!-- Категория и режим -->
+    <div class="row">
+      <label>
+        Категория
+        <select id="category" disabled>
+          <option>Загрузка…</option>
+        </select>
+      </label>
+      <label>
+        Режим работы
+        <select id="mode">
+          <option value="commission_fbw">FBW (Склад WB)</option>
+          <option value="commission_fbs">FBS (Маркетплейс)</option>
+          <option value="commission_dbs">DBS / DBW (Витрина)</option>
+          <option value="commission_cc">C&C (Самовывоз)</option>
+          <option value="commission_edbs">EDBS (Экспресс)</option>
+          <option value="commission_reserve">Бронирование</option>
+        </select>
+      </label>
     </div>
 
-    <script>
-        function calculateMargin() {
-            const vatRate = 0.20; // 20% НДС
-            const profitTaxRate = 0.20; // 20% Налог на прибыль в РФ для большинства случаев [11]
-            const volumetricDivisor = 5000; // Объемный делитель теперь фиксирован внутри скрипта [5, 6]
+    <!-- Базовые цены -->
+    <div class="row">
+      <label>
+        Себестоимость, ₽
+        <input type="number" id="costPrice" value="1000" min="0" step="0.01" />
+      </label>
+      <label>
+        Цена продажи, ₽
+        <input type="number" id="sellingPrice" value="2500" min="0" step="0.01" />
+      </label>
+    </div>
 
-            // Получаем значения из полей ввода
-            const costPrice = parseFloat(document.getElementById('costPrice').value) || 0;
-            const sellingPrice = parseFloat(document.getElementById('sellingPrice').value) || 0;
-            const commission = parseFloat(document.getElementById('commission').value) || 0;
-            const storage = parseFloat(document.getElementById('storage').value) || 0;
-            const otherCosts = parseFloat(document.getElementById('otherCosts').value) || 0;
+    <!-- Габариты -->
+    <div class="row">
+      <label>
+        Длина, см
+        <input type="number" id="length" value="20" min="0" step="0.1" />
+      </label>
+      <label>
+        Ширина, см
+        <input type="number" id="width" value="15" min="0" step="0.1" />
+      </label>
+      <label>
+        Высота, см
+        <input type="number" id="height" value="10" min="0" step="0.1" />
+      </label>
+    </div>
 
-            // Габариты и параметры для расчета логистики
-            const length = parseFloat(document.getElementById('length').value) || 0;
-            const width = parseFloat(document.getElementById('width').value) || 0;
-            const height = parseFloat(document.getElementById('height').value) || 0;
-            const actualWeight = parseFloat(document.getElementById('weight').value) || 0;
-            const costPerChargeableKg = parseFloat(document.getElementById('costPerChargeableKg').value) || 0;
+    <!-- Прочие расходы -->
+    <div class="row">
+      <label>
+        Хранение, ₽
+        <input type="number" id="storage" value="10" min="0" step="0.01" />
+      </label>
+      <label>
+        Прочие расходы, ₽
+        <input type="number" id="otherCosts" value="0" min="0" step="0.01" />
+      </label>
+    </div>
 
-            // 1. Расчет объемного веса
-            let volumetricWeight = 0;
-            if (volumetricDivisor > 0) { // Делитель не может быть 0
-                volumetricWeight = (length * width * height) / volumetricDivisor;
-            }
+    <button id="calculate">Рассчитать</button>
 
-            // 2. Расчетный вес (максимум из фактического и объемного)
-            const chargeableWeight = Math.max(actualWeight, volumetricWeight);
+    <!-- Вывод -->
+    <div id="results" class="output" style="display:none">
+      <div class="output-item"><span>Комиссия (вкл. НДС)</span><span id="commissionAmount">0 ₽</span></div>
+      <div class="output-item"><span>Логистика (вкл. НДС)</span><span id="logisticsAmount">0 ₽</span></div>
+      <div class="output-item"><span>Возмещение НДС</span><span id="vatRefund">0 ₽</span></div>
+      <div class="output-item"><span>Общие расходы</span><span id="totalCosts">0 ₽</span></div>
+      <div class="output-item"><span>Валовая прибыль</span><span id="grossProfit">0 ₽</span></div>
+      <div class="output-item"><span>Налог на прибыль 20%</span><span id="profitTax">0 ₽</span></div>
+      <div class="output-item"><span>Чистая прибыль</span><span id="netProfit" class="positive">0 ₽</span></div>
+      <div class="output-item"><span>Маржа</span><span id="margin" class="positive">0%</span></div>
+    </div>
 
-            // 3. Расчет стоимости логистики на основе расчетного веса
-            const calculatedLogistics = chargeableWeight * costPerChargeableKg;
+    <p class="info">
+      Комиссия подставляется по выбранной категории и режиму работы.<br>
+      Стоимость логистики: 75 ₽ за первый литр объёма + 15 ₽ за каждый следующий литр (все суммы с НДС 20 %). Возмещение НДС учитывается автоматически.
+    </p>
+  </div>
 
-            // Расчет чистых затрат после возмещения НДС
-            // Предполагается, что введенные комиссии и логистика *включают* НДС, и НДС возмещается.
-            // Поэтому для расчета прибыли мы берем сумму без НДС.
-            const netCommission = commission / (1 + vatRate); // НДС в России 20% [12]
-            const netLogistics = calculatedLogistics / (1 + vatRate); // Используем рассчитанную логистику
+  <script>
+    /* ============================================================
+       Настройки
+    ============================================================ */
+    const VAT_RATE = 0.20;        // 20 % НДС
+    const PROFIT_TAX_RATE = 0.20; // 20 % налог на прибыль
 
-            // Общие расходы
-            const totalCosts = costPrice + netCommission + netLogistics + storage + otherCosts;
+    let categories = [];          // сюда загрузим JSON
 
-            // Валовая прибыль (до налога на прибыль)
-            const grossProfit = sellingPrice - totalCosts;
+    // Форматирование денег
+    function money(n) {
+      return n.toLocaleString('ru-RU', {
+        style: 'currency', currency: 'RUB', minimumFractionDigits: 2
+      });
+    }
 
-            // Налог на прибыль
-            let profitTax = 0;
-            if (grossProfit > 0) { // Налог платится только с положительной прибыли
-                profitTax = grossProfit * profitTaxRate;
-            }
+    /* ============================================================
+       Подгружаем категории
+    ============================================================ */
+    fetch('categories.json')
+      .then(r => r.json())
+      .then(data => {
+        categories = data;
+        const select = document.getElementById('category');
+        select.innerHTML = '';
+        categories.forEach(cat => {
+          const opt = document.createElement('option');
+          opt.value = cat.category;
+          opt.textContent = cat.category;
+          select.appendChild(opt);
+        });
+        select.disabled = false;
+      })
+      .catch(err => {
+        console.error('Не удалось загрузить categories.json', err);
+        alert('Ошибка загрузки списка категорий — проверьте консоль.');
+      });
 
-            // Чистая прибыль
-            const netProfit = grossProfit - profitTax;
+    /* ============================================================
+       Основная логика расчёта
+    ============================================================ */
+    document.getElementById('calculate').addEventListener('click', calculate);
 
-            // Рентабельность / Маржа
-            let profitability = 0;
-            if (sellingPrice > 0) {
-                profitability = (netProfit / sellingPrice) * 100;
-            }
+    function calculate() {
+      // Данные формы
+      const categoryName = document.getElementById('category').value;
+      const modeField = document.getElementById('mode').value;
 
-            // Отображаем результаты
-            document.getElementById('chargeableWeight').textContent = chargeableWeight.toFixed(2) + ' кг';
-            document.getElementById('calculatedLogistics').textContent = calculatedLogistics.toFixed(2) + ' руб.';
-            document.getElementById('totalCosts').textContent = totalCosts.toFixed(2) + ' руб.';
-            document.getElementById('grossProfit').textContent = grossProfit.toFixed(2) + ' руб.';
-            document.getElementById('profitTax').textContent = profitTax.toFixed(2) + ' руб.';
-            document.getElementById('netProfit').textContent = netProfit.toFixed(2) + ' руб.';
-            document.getElementById('profitability').textContent = profitability.toFixed(2) + '%';
+      const costPrice   = +document.getElementById('costPrice').value || 0;
+      const sellingPrice= +document.getElementById('sellingPrice').value || 0;
 
-            // Меняем цвет текста для прибыли и рентабельности в зависимости от результата
-            const grossProfitElement = document.getElementById('grossProfit');
-            const netProfitElement = document.getElementById('netProfit');
-            const profitabilityElement = document.getElementById('profitability');
+      const length = +document.getElementById('length').value || 0;
+      const width  = +document.getElementById('width').value  || 0;
+      const height = +document.getElementById('height').value || 0;
 
-            // Функция для установки цвета
-            function setProfitColor(element, value) {
-                element.classList.remove('profit', 'loss');
-                if (value > 0) {
-                    element.classList.add('profit');
-                } else if (value < 0) {
-                    element.classList.add('loss');
-                }
-            }
+      const storage = +document.getElementById('storage').value || 0;
+      const other   = +document.getElementById('otherCosts').value || 0;
 
-            setProfitColor(grossProfitElement, grossProfit);
-            setProfitColor(netProfitElement, netProfit);
-            setProfitColor(profitabilityElement, profitability);
+      // 1. Найти объект категории
+      const cat = categories.find(c => c.category === categoryName);
+      const commissionPercent = cat ? (+cat[modeField] || 0) : 0;
 
-            // Анимация появления результатов
-            const resultsSection = document.getElementById('resultsSection');
-            resultsSection.style.animation = 'none'; // Reset animation
-            void resultsSection.offsetWidth; // Trigger reflow
-            resultsSection.style.animation = null; // Re-enable animation
-            resultsSection.style.opacity = '1'; // Ensure it's visible after animation
-        }
+      // 2. Комиссия (с НДС)
+      const commissionWithVat = (sellingPrice * commissionPercent) / 100;
+      const commissionVatRefund = commissionWithVat * VAT_RATE / (1 + VAT_RATE);
 
-        // Вызываем расчет при загрузке страницы, чтобы отобразить значения по умолчанию
-        document.addEventListener('DOMContentLoaded', calculateMargin);
-    </script>
+      // 3. Логистика по объёму (см³ → литры)
+      const litres = (length * width * height) / 1000; // 1000 см³ = 1 л
+      const logisticsWithVat = litres > 0 ? 75 + Math.max(0, litres - 1) * 15 : 0;
+      const logisticsVatRefund = logisticsWithVat * VAT_RATE / (1 + VAT_RATE);
+
+      // 4. Итоговые расходы с учётом возмещения НДС
+      const totalCosts = costPrice + (commissionWithVat - commissionVatRefund) +
+                         (logisticsWithVat - logisticsVatRefund) + storage + other;
+
+      // 5. Прибыль & налоги
+      const grossProfit = sellingPrice - totalCosts;
+      const profitTax   = grossProfit > 0 ? grossProfit * PROFIT_TAX_RATE : 0;
+      const netProfit   = grossProfit - profitTax;
+      const margin      = sellingPrice ? (netProfit / sellingPrice) * 100 : 0;
+
+      /* --------------------------------------------------------
+         Вывод
+      -------------------------------------------------------- */
+      document.getElementById('commissionAmount').textContent = money(commissionWithVat);
+      document.getElementById('logisticsAmount').textContent  = money(logisticsWithVat);
+      document.getElementById('vatRefund').textContent        = money(commissionVatRefund + logisticsVatRefund);
+      document.getElementById('totalCosts').textContent       = money(totalCosts);
+      document.getElementById('grossProfit').textContent      = money(grossProfit);
+      document.getElementById('profitTax').textContent        = money(profitTax);
+      document.getElementById('netProfit').textContent        = money(netProfit);
+      document.getElementById('margin').textContent           = margin.toFixed(2) + '%';
+
+      // Цвет для прибыли / маржи
+      const profitEl = document.getElementById('netProfit');
+      const marginEl = document.getElementById('margin');
+      [profitEl, marginEl].forEach(el => {
+        el.classList.remove('positive', 'negative');
+        el.classList.add(netProfit >= 0 ? 'positive' : 'negative');
+      });
+
+      // Показать блок результатов
+      const res = document.getElementById('results');
+      res.style.display = 'block';
+      res.classList.remove('output'); // перезапуск анимации
+      void res.offsetWidth;
+      res.classList.add('output');
+    }
+  </script>
 </body>
 </html>
