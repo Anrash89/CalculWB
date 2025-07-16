@@ -2,181 +2,211 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8"/>
-<title>Калькулятор маржи WB</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<!-- Tom‑Select -->
+<title>Калькулятор прибыли WB — Deluxe UI</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet"/>
 <style>
-  :root{--purple:#a500ff;--purple-dark:#8300d0;--grey-100:#f7f7f7;--grey-600:#666;--white:#fff;
-        --success:#28a745;--danger:#dc3545}
-  *{box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
-  body{margin:0;background:var(--grey-100);display:flex;justify-content:center;padding:40px 16px}
-  .card{width:100%;max-width:700px;background:var(--white);border-radius:16px;padding:32px 28px;
-        box-shadow:0 10px 30px rgba(0,0,0,.08)}
-  h1{margin:0 0 28px;text-align:center;font-size:2rem;color:var(--purple)}
-  .row{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:20px}
-  .row.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
-  label{flex:1 1 200px;display:flex;flex-direction:column;font-size:.95rem;color:var(--grey-600)}
-  select,input[type=number]{margin-top:6px;padding:10px 12px;font-size:1rem;border:1px solid #ddd;border-radius:10px}
-  select:focus,input:focus{border-color:var(--purple);outline:none;box-shadow:0 0 0 3px rgba(165,0,255,.2)}
-  button{display:block;width:100%;max-width:260px;margin:0 auto;padding:14px 20px;font-size:1.1rem;font-weight:600;
-         color:var(--white);background:var(--purple);border:0;border-radius:12px;cursor:pointer;transition:.25s}
-  button:hover{background:var(--purple-dark);transform:translateY(-3px);box-shadow:0 8px 15px rgba(165,0,255,.25)}
-  button:active{transform:none;box-shadow:0 4px 10px rgba(165,0,255,.15)}
-  .output{margin-top:36px;border-top:1px solid #eee;padding-top:24px;opacity:0;animation:fade .6s forwards}
-  @keyframes fade{to{opacity:1}}
-  .output-item{display:flex;justify-content:space-between;margin-bottom:10px;font-size:1rem}
-  .output-item span:first-child{font-weight:600}
-  .output-item span:last-child{font-weight:600;color:var(--purple)}
-  .positive{color:var(--success)!important}.negative{color:var(--danger)!important}
-  .info{margin-top:24px;font-size:.85rem;color:var(--grey-600);background:#fafafa;border:1px solid #eee;
-        border-radius:10px;padding:14px 16px;line-height:1.5}
+/* --- colour system (основа WB) --- */
+:root{
+  --p:#a500ff;--p-dark:#8100c8;--bg:#f5f5f7;--card:#ffffff;--txt:#444;
+  --line:#e4e4e9;--ok:#26a269;--bad:#d83a52;--shadow:0 8px 26px rgba(0,0,0,.08);
+  --radius:14px;
+}
+*{box-sizing:border-box;font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif}
+body{margin:0;min-height:100vh;background:var(--bg);display:flex;justify-content:center;align-items:flex-start;padding:40px 16px;overflow-x:hidden}
+
+/* --- container split (sidebar form + preview card) --- */
+#wrapper{display:grid;gap:28px;grid-template-columns:1fr 300px;max-width:1040px;width:100%;animation:fade-in .8s}
+@media(max-width:860px){#wrapper{grid-template-columns:1fr}}
+@keyframes fade-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow)}
+
+/* -------- left form -------- */
+#panel{padding:32px 28px;display:flex;flex-direction:column;gap:24px}
+section{display:flex;flex-direction:column;gap:16px}
+h2{margin:0 0 4px;font-size:1.25rem;color:var(--p)}
+label{display:flex;flex-direction:column;font-size:.9rem;color:var(--txt)}
+select,input[type=number]{margin-top:6px;padding:10px 12px;font-size:1rem;border:1px solid var(--line);border-radius:10px;background:#fafbfd;transition:.2s}
+select:focus,input:focus{border-color:var(--p);outline:none;box-shadow:0 0 0 3px rgba(165,0,255,.2)}
+
+/* grid helper */
+.grid{display:grid;gap:14px}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+
+.checkbox, .radio{display:flex;align-items:center;gap:6px;font-size:.9rem;color:var(--txt);cursor:pointer;user-select:none}
+.checkbox input,.radio input{accent-color:var(--p)}
+
+/* slider */
+.range-wrap{display:flex;flex-direction:column;gap:8px}
+input[type=range]{-webkit-appearance:none;width:100%;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--p) 0,var(--p) var(--pos,0%),#d0d0d5 var(--pos,0%));outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--p);cursor:pointer;border:none;box-shadow:0 0 0 4px rgba(165,0,255,.25);transition:.2s}
+input[type=range]:active::-webkit-slider-thumb{transform:scale(1.15)}
+
+button.primary{align-self:flex-start;background:var(--p);color:#fff;padding:14px 26px;font-weight:600;border:none;border-radius:12px;cursor:pointer;transition:.25s}
+button.primary:hover{background:var(--p-dark);transform:translateY(-2px);box-shadow:0 6px 16px rgba(165,0,255,.25)}
+button.primary:active{transform:none;box-shadow:0 3px 8px rgba(165,0,255,.18)}
+
+/* -------- result card -------- */
+#resultCard{padding:28px 24px;position:relative;overflow:hidden;min-height:380px;display:flex;flex-direction:column;gap:18px}
+#resultCard.fade{animation:cardFade .6s}
+@keyframes cardFade{from{opacity:.3;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.metric{display:flex;justify-content:space-between;font-size:.88rem;color:var(--txt)}
+.metric span:first-child{opacity:.8}
+.metric .val{font-weight:600}
+.metric.profit .val{color:var(--ok)}
+.metric.loss .val{color:var(--bad)}
+
+.tableBox{display:flex;flex-direction:column;gap:10px;padding:12px 0;border-top:1px solid var(--line)}
+
+/* badge */
+.badge{padding:2px 8px;border-radius:8px;font-size:.75rem;background:var(--p);color:#fff;font-weight:600}
+
+/* subtle background anim in card */
+#resultCard::after{content:"";position:absolute;bottom:-80px;right:-80px;width:160px;height:160px;background:var(--p);opacity:.08;border-radius:50%;animation:spin 15s linear infinite}
+@keyframes spin {from{transform:rotate(0)}to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
-<div class="card">
-  <h1>Калькулятор маржи WB</h1>
+<div id="wrapper">
+  <!-- left -->
+  <div id="panel" class="card">
+    <section>
+      <h2>Параметры</h2>
+      <label>Категория / предмет
+        <select id="category" placeholder="Начните вводить…" disabled></select>
+      </label>
+    </section>
 
-  <!-- Категория + режим -->
-  <div class="row">
-    <label>Категория / предмет
-      <select id="category" placeholder="Начните вводить…" disabled></select>
-    </label>
-    <label>Режим работы
-      <select id="mode">
-        <option value="commission_fbw">FBW (Склад WB)</option>
-        <option value="commission_fbs">FBS (Маркетплейс)</option>
-        <option value="commission_dbs">DBS / DBW</option>
-        <option value="commission_cc">C&C (Самовывоз)</option>
-        <option value="commission_edbs">EDBS (Экспресс)</option>
-        <option value="commission_reserve">Бронирование</option>
-      </select>
-    </label>
+    <section class="grid grid-2">
+      <label>Цена на WB, ₽<input type="number" id="price" value="500" min="0" step="0.01"></label>
+      <label>Себестоимость, ₽<input type="number" id="cost" value="100" min="0" step="0.01"></label>
+    </section>
+
+    <section>
+      <h2>Габариты</h2>
+      <div class="grid grid-3">
+        <label>Длина, см<input type="number" id="L" value="25" min="0" step="0.1"></label>
+        <label>Ширина, см<input type="number" id="W" value="13" min="0" step="0.1"></label>
+        <label>Высота, см<input type="number" id="H" value="13" min="0" step="0.1"></label>
+      </div>
+      <label class="checkbox"><input type="checkbox" id="heavy">Товар тяжелее 25 кг</label>
+    </section>
+
+    <section class="grid grid-2">
+      <label>Оборот, дн<input type="number" id="turnover" value="20" min="1"></label>
+      <label>% выкупа<input type="number" id="redemp" value="92" min="0" max="100"></label>
+    </section>
+
+    <section>
+      <h2>Налогообложение</h2>
+      <label class="radio"><input type="radio" name="tax" value="0.06">УСН 6 %</label>
+      <label class="radio"><input type="radio" name="tax" value="0.15">УСН 15 %</label>
+      <label class="radio"><input type="radio" name="tax" value="0.20" checked>Общая 20 %</label>
+      <label class="radio"><input type="radio" name="tax" value="0">Не учитывать</label>
+    </section>
+
+    <section>
+      <h2>Модель продаж</h2>
+      <label class="checkbox"><input type="checkbox" id="fbs" checked>Маркетплейс (FBS)</label>
+      <div id="fbsBlock" style="margin:8px 0 12px 16px">
+        <div class="range-wrap">
+          <input type="range" id="fbsRange" min="30" max="72" step="18" value="30">
+        </div>
+        <small>Комиссия за доставку: <span id="fbsPerc">19.5 %</span></small>
+      </div>
+      <label class="checkbox"><input type="checkbox" id="fbw">Поставки на склад (FBW)</label>
+    </section>
+
+    <section>
+      <h2>Тип поставки</h2>
+      <label class="radio"><input type="radio" name="supply" value="box" checked>Короб</label>
+      <label class="radio"><input type="radio" name="supply" value="mono">Монопаллета</label>
+    </section>
+
+    <button class="primary" id="calc">Пересчитать</button>
   </div>
 
-  <!-- Цены -->
-  <div class="row">
-    <label>Себестоимость, ₽<input type="number" id="costPrice" value="1000" min="0" step="0.01"></label>
-    <label>Цена продажи, ₽   <input type="number" id="sellingPrice" value="2500" min="0" step="0.01"></label>
+  <!-- right result -->
+  <div id="resultCard" class="card">
+    <h2>Выручка и расходы</h2>
+    <div class="badge" id="modelBadge">Маркетплейс · Везу 30 ч</div>
+    <div id="metrics" class="tableBox"></div>
   </div>
-
-  <!-- Габариты -->
-  <div class="row grid">
-    <label>Длина, см <input type="number" id="length" value="20" min="0" step="0.1"></label>
-    <label>Ширина, см <input type="number" id="width" value="15" min="0" step="0.1"></label>
-    <label>Высота, см <input type="number" id="height" value="10" min="0" step="0.1"></label>
-  </div>
-
-  <!-- Хранение + прочие -->
-  <div class="row">
-    <label>Хранение, ₽ (20 дн)<input type="number" id="storage" value="0" readonly></label>
-    <label>Прочие расходы, ₽     <input type="number" id="otherCosts" value="0" min="0" step="0.01"></label>
-  </div>
-
-  <button id="calculate">Рассчитать</button>
-
-  <!-- Итоги -->
-  <div id="results" class="output" style="display:none">
-    <div class="output-item"><span>Комиссия (вкл. НДС)</span><span id="commissionAmount">0 ₽</span></div>
-    <div class="output-item"><span>Логистика (вкл. НДС)</span><span id="logisticsAmount">0 ₽</span></div>
-    <div class="output-item"><span>Возмещение НДС</span><span id="vatRefund">0 ₽</span></div>
-    <div class="output-item"><span>Общие расходы</span><span id="totalCosts">0 ₽</span></div>
-    <div class="output-item"><span>Валовая прибыль</span><span id="grossProfit">0 ₽</span></div>
-    <div class="output-item"><span>Налог на прибыль 20%</span><span id="profitTax">0 ₽</span></div>
-    <div class="output-item"><span>Чистая прибыль</span><span id="netProfit">0 ₽</span></div>
-    <div class="output-item"><span>Маржа</span><span id="margin">0 %</span></div>
-  </div>
-
-  <p class="info">
-    Поиск теперь по категории и товару.<br>
-    Хранение: 0 ,10 ₽ × литры × 20 дней (литры — объём, округлённый вверх).<br>
-    Логистика: 75 ₽ первый литр + 15 ₽ за каждый следующий.
-  </p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
 <script>
-/* ===== Константы ===== */
-const VAT = 0.20, PROFIT_TAX = 0.20;
-const STORAGE_RATE = 0.10;        // ₽/литр/день
-const TURNOVER_DAYS = 20;         // дней хранения
-const money = v => v.toLocaleString('ru-RU',{style:'currency',currency:'RUB',minimumFractionDigits:2});
-let categories = [];
+/* ==== DATA + CONST ==== */
+const VAT=0.20, PROFIT_TAX=0.20, STORAGE=0.10;
+const FBS_TAR={30:19.5,48:21.5,72:23.5};
+const money=v=>v.toLocaleString('ru-RU',{style:'currency',currency:'RUB',minimumFractionDigits:2});
+let CAT=[];
 
-/* ===== Загрузка JSON и построение списка ===== */
-fetch('categories.json')
-  .then(r => r.json())
-  .then(data => {
-    categories = data;
-    const opts = data.map((c,i)=>{
-      const item = (c.item||'').trim();
-      const text = item ? `${item} — ${c.category}` : c.category;
-      return `<option value="${i}">${text}</option>`;
-    }).join('');
-    const sel = document.getElementById('category');
-    sel.innerHTML = opts; sel.disabled = false;
-    new TomSelect(sel,{maxOptions:15000,placeholder:'Введите часть названия…'});
-  })
-  .catch(e => console.error('categories.json error',e));
-
-/* ===== Расчёт ===== */
-document.getElementById('calculate').addEventListener('click',()=>{
-  const idx  = +qs('category').value;
-  const cat  = categories[idx] || {};
-  const mode = qs('mode').value;
-
-  const sell = +qs('sellingPrice').value || 0;
-  const cost = +qs('costPrice').value    || 0;
-
-  const L = +qs('length').value || 0,
-        W = +qs('width').value  || 0,
-        H = +qs('height').value || 0;
-
-  /* комиссия */
-  const commPct     = +cat[mode] || 0;
-  const commWithVat = sell * commPct / 100;
-  const commVatBack = commWithVat * VAT / (1+VAT);
-
-  /* логистика */
-  const litres      = Math.ceil((L*W*H)/1000);
-  const logWithVat  = litres ? 75 + Math.max(0, litres-1)*15 : 0;
-  const logVatBack  = logWithVat * VAT / (1+VAT);
-
-  /* хранение */
-  const storage = litres * STORAGE_RATE * TURNOVER_DAYS;
-  qs('storage').value = storage.toFixed(2);
-
-  const other  = +qs('otherCosts').value || 0;
-  const total  = cost + storage + other +
-                 (commWithVat - commVatBack) +
-                 (logWithVat  - logVatBack);
-
-  const gross  = sell - total;
-  const tax    = gross>0 ? gross * PROFIT_TAX : 0;
-  const net    = gross - tax;
-  const margin = sell ? net / sell * 100 : 0;
-
-  /* вывод результатов */
-  out('commissionAmount', money(commWithVat));
-  out('logisticsAmount',  money(logWithVat));
-  out('vatRefund',        money(commVatBack + logVatBack));
-  out('totalCosts',       money(total));
-  out('grossProfit',      money(gross));
-  out('profitTax',        money(tax));
-  out('netProfit',        money(net));
-  out('margin',           margin.toFixed(2)+' %');
-
-  ['netProfit','margin'].forEach(id=>{
-    qs(id).classList.toggle('positive', net >= 0);
-    qs(id).classList.toggle('negative', net < 0);
-  });
-
-  const res=qs('results');res.style.display='block';res.classList.remove('output');void res.offsetWidth;res.classList.add('output');
+/* ==== load categories ==== */
+fetch('categories.json').then(r=>r.json()).then(d=>{
+  CAT=d;const sel=id('category');sel.innerHTML=d.map((c,i)=>`<option value="${i}">${(c.item?c.item+' — ':'')+c.category}</option>`).join('');sel.disabled=false;
+  new TomSelect(sel,{maxOptions:20000,placeholder:'Введите название…'});
 });
 
-/* ===== helpers ===== */
-const qs=id=>document.getElementById(id);
-const out=(id,val)=>qs(id).textContent=val;
+/* ==== slider visual ==== */
+const slider=id('fbsRange'), fbsTxt=id('fbsPerc');
+function updateSlider(){const v=+slider.value;slider.style.setProperty('--pos',((v-30)/42*100)+'%');fbsTxt.textContent=FBS_TAR[v].toFixed(1)+' %';updateBadge()}
+slider.addEventListener('input',updateSlider);updateSlider();
+
+function updateBadge(){const parts=[];if(id('fbs').checked)parts.push(`Маркетплейс · Везу ${slider.value} ч`);if(id('fbw').checked)parts.push('Поставки на склад');id('modelBadge').textContent=parts.join(' + ')||'—';}
+id('fbs').addEventListener('change',()=>{id('fbsBlock').style.display=id('fbs').checked?'block':'none';updateBadge()});id('fbw').addEventListener('change',updateBadge);
+
+/* ==== calc ==== */
+id('calc').addEventListener('click',calc);
+function calc(){
+  const idx=+id('category').value, rec=CAT[idx]||{};
+  const sell=+id('price').value||0,cost=+id('cost').value||0;
+  const L=+id('L').value||0,W=+id('W').value||0,H=+id('H').value||0;
+  const litres=Math.ceil((L*W*H)/1000)*(id('heavy').checked?2:1);
+
+  /* комиссия возникновения */
+  let commission=0;
+  if(id('fbw').checked) commission+=sell*(+rec['commission_fbw']||0)/100;
+  if(id('fbs').checked) commission+=sell*(FBS_TAR[slider.value])/100;
+  const commVatBack=commission*VAT/(1+VAT);
+
+  /* storage + logistics */
+  const turn=+id('turnover').value||0;
+  const storage=litres*STORAGE*turn;
+  const logistics=litres?75+(litres-1)*15:0;
+  const logVatBack=logistics*VAT/(1+VAT);
+
+  const otherExp=0;//reserved
+
+  const subtotal=cost+storage+otherExp+(commission-commVatBack)+(logistics-logVatBack);
+  const gross=sell-subtotal;
+  const taxRate=parseFloat(document.querySelector('input[name="tax"]:checked').value);
+  const tax=gross>0?gross*taxRate:0;
+  const net=gross-tax;
+  const margin=sell?net/sell*100:0;
+
+  /* ---- draw table ---- */
+  const box=id('metrics');box.innerHTML='';
+  const push=(label,val,cls='')=>{
+    const div=document.createElement('div');div.className='metric '+cls;div.innerHTML=`<span>${label}</span><span class="val">${val}</span>`;box.appendChild(div);
+  };
+  push('Цена товара','100.00% '+money(sell));
+  push('Расходы на WB',(commission/sell*100).toFixed(2)+'% '+money(commission));
+  push('К перевозу за товар',(logistics/sell*100).toFixed(2)+'% '+money(logistics));
+  push('Налоги',(tax/sell*100).toFixed(2)+'% '+money(tax));
+  push('Себестоимость',(cost/sell*100).toFixed(2)+'% '+money(cost));
+  push('Всего расходов',(subtotal+tax)/sell*100.toFixed?'':'');
+  push('Всего расходов',((subtotal+tax)/sell*100).toFixed(2)+'% '+money(subtotal+tax));
+  push('Прибыль',margin.toFixed(2)+'% '+money(net),net>=0?'profit':'loss');
+
+  id('resultCard').classList.add('fade');setTimeout(()=>id('resultCard').classList.remove('fade'),600);
+}
+
+/* ---- helpers ---- */
+function id(a){return document.getElementById(a)}
 </script>
 </body>
 </html>
