@@ -1,15 +1,5 @@
 [
   {
-    "item": "Автомобили",
-    "category": NaN,
-    "commission_fbw": 0.5,
-    "commission_fbs": 0.5,
-    "commission_dbs": 0.5,
-    "commission_cc": 0.5,
-    "commission_edbs": 0.5,
-    "commission_reserve": 0.5
-  },
-  {
     "item": "Табуреты",
     "category": "Мебель малых форм",
     "commission_fbw": 21.5,
@@ -350,16 +340,6 @@
     "commission_reserve": 16.5
   },
   {
-    "item": "Шины и диски",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
-  },
-  {
     "item": "Кладочный раствор",
     "category": "Строительные материалы",
     "commission_fbw": 23.5,
@@ -658,16 +638,6 @@
     "commission_cc": 4.5,
     "commission_edbs": 3.0,
     "commission_reserve": 4.5
-  },
-  {
-    "item": "Цифровые товары",
-    "category": NaN,
-    "commission_fbw": 20.0,
-    "commission_fbs": 20.0,
-    "commission_dbs": 20.0,
-    "commission_cc": 15.0,
-    "commission_edbs": 3.0,
-    "commission_reserve": 15.0
   },
   {
     "item": "Абрикосы",
@@ -1620,16 +1590,6 @@
     "commission_reserve": 4.5
   },
   {
-    "item": "Автоаксессуары и дополнительное оборудование",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
-  },
-  {
     "item": "Репы",
     "category": "Продукты",
     "commission_fbw": 16.5,
@@ -2520,16 +2480,6 @@
     "commission_reserve": 19.5
   },
   {
-    "item": "Масла и технические жидкости",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
-  },
-  {
     "item": "Комплектующие для карнизов",
     "category": "Шторы и аксессуары",
     "commission_fbw": 24.5,
@@ -3350,16 +3300,6 @@
     "commission_reserve": 19.5
   },
   {
-    "item": "Ноутбуки и компьютеры",
-    "category": NaN,
-    "commission_fbw": 19.5,
-    "commission_fbs": 19.5,
-    "commission_dbs": 19.5,
-    "commission_cc": 14.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 14.5
-  },
-  {
     "item": "Дутики",
     "category": "Обувь",
     "commission_fbw": 29.5,
@@ -3400,16 +3340,6 @@
     "commission_reserve": 16.5
   },
   {
-    "item": "Автохимия и автокосметика",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
-  },
-  {
     "item": "Накладки защитные автомобильные",
     "category": "Автоаксессуары и дополнительное оборудование",
     "commission_fbw": 21.5,
@@ -3438,16 +3368,6 @@
     "commission_cc": 19.5,
     "commission_edbs": 3.0,
     "commission_reserve": 19.5
-  },
-  {
-    "item": "Мебель садовая",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
   },
   {
     "item": "Стульчики для кормления",
@@ -4220,16 +4140,6 @@
     "commission_reserve": 19.5
   },
   {
-    "item": "Электроинструмент и оборудование",
-    "category": NaN,
-    "commission_fbw": 26.5,
-    "commission_fbs": 26.5,
-    "commission_dbs": 26.5,
-    "commission_cc": 21.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 21.5
-  },
-  {
     "item": "Аксессуары для конюшни",
     "category": "Товары для животных",
     "commission_fbw": 16.5,
@@ -4378,16 +4288,6 @@
     "commission_cc": 22.5,
     "commission_edbs": 3.0,
     "commission_reserve": 22.5
-  },
-  {
-    "item": "Хранение вещей",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
   },
   {
     "item": "Гормональные препараты для животных",
@@ -4788,16 +4688,6 @@
     "commission_cc": 19.5,
     "commission_edbs": 3.0,
     "commission_reserve": 19.5
-  },
-  {
-    "item": "Ювелирные украшения",
-    "category": NaN,
-    "commission_fbw": 28.0,
-    "commission_fbs": 28.0,
-    "commission_dbs": 28.0,
-    "commission_cc": 23.0,
-    "commission_edbs": 3.0,
-    "commission_reserve": 23.0
   },
   {
     "item": "Сумки строительные",
@@ -5920,16 +5810,6 @@
     "commission_reserve": 19.5
   },
   {
-    "item": "Аккумуляторы для ТС",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
-  },
-  {
     "item": "Куртки для самбо",
     "category": "Спортивная одежда",
     "commission_fbw": 29.5,
@@ -6592,16 +6472,6 @@
   {
     "item": "Сноуборды детские",
     "category": "Спортивный товар",
-    "commission_fbw": 22.5,
-    "commission_fbs": 22.5,
-    "commission_dbs": 22.5,
-    "commission_cc": 17.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 17.5
-  },
-  {
-    "item": "Сантехника",
-    "category": NaN,
     "commission_fbw": 22.5,
     "commission_fbs": 22.5,
     "commission_dbs": 22.5,
@@ -7428,16 +7298,6 @@
     "commission_cc": 19.5,
     "commission_edbs": 3.0,
     "commission_reserve": 19.5
-  },
-  {
-    "item": "Мебель для сна",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
   },
   {
     "item": "Горячий шоколад",
@@ -9470,16 +9330,6 @@
     "commission_reserve": 19.5
   },
   {
-    "item": "Белье",
-    "category": NaN,
-    "commission_fbw": 29.5,
-    "commission_fbs": 29.5,
-    "commission_dbs": 29.5,
-    "commission_cc": 24.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 24.5
-  },
-  {
     "item": "Средства для жироуловителей",
     "category": "Бытовая химия",
     "commission_fbw": 24.5,
@@ -9748,16 +9598,6 @@
     "commission_cc": 16.5,
     "commission_edbs": 3.0,
     "commission_reserve": 16.5
-  },
-  {
-    "item": "Электротранспорт",
-    "category": NaN,
-    "commission_fbw": 25.5,
-    "commission_fbs": 25.5,
-    "commission_dbs": 25.5,
-    "commission_cc": 20.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 20.5
   },
   {
     "item": "Блесны рыболовные",
@@ -10362,16 +10202,6 @@
   {
     "item": "Поглотители запаха и влаги",
     "category": "Бытовая химия",
-    "commission_fbw": 24.5,
-    "commission_fbs": 24.5,
-    "commission_dbs": 24.5,
-    "commission_cc": 19.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 19.5
-  },
-  {
-    "item": "Освещение",
-    "category": NaN,
     "commission_fbw": 24.5,
     "commission_fbs": 24.5,
     "commission_dbs": 24.5,
@@ -12030,16 +11860,6 @@
     "commission_reserve": 21.5
   },
   {
-    "item": "Отделочные материалы",
-    "category": NaN,
-    "commission_fbw": 23.5,
-    "commission_fbs": 23.5,
-    "commission_dbs": 23.5,
-    "commission_cc": 18.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 18.5
-  },
-  {
     "item": "Халаты для животных",
     "category": "Товары для животных",
     "commission_fbw": 16.5,
@@ -12620,16 +12440,6 @@
     "commission_reserve": 4.5
   },
   {
-    "item": "Фото и Видеотехника",
-    "category": NaN,
-    "commission_fbw": 23.5,
-    "commission_fbs": 23.5,
-    "commission_dbs": 23.5,
-    "commission_cc": 18.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 18.5
-  },
-  {
     "item": "Порожки для гитар",
     "category": "Профессиональные музыкальные инструменты",
     "commission_fbw": 23.5,
@@ -13008,16 +12818,6 @@
     "commission_cc": 24.5,
     "commission_edbs": 3.0,
     "commission_reserve": 24.5
-  },
-  {
-    "item": "Игровые консоли и игры",
-    "category": NaN,
-    "commission_fbw": 16.5,
-    "commission_fbs": 16.5,
-    "commission_dbs": 16.5,
-    "commission_cc": 11.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 11.5
   },
   {
     "item": "Тросики рычагов",
@@ -13730,28 +13530,8 @@
     "commission_reserve": 24.5
   },
   {
-    "item": "Одежда для малышей",
-    "category": NaN,
-    "commission_fbw": 29.5,
-    "commission_fbs": 29.5,
-    "commission_dbs": 29.5,
-    "commission_cc": 24.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 24.5
-  },
-  {
     "item": "Аэраторы для пруда",
     "category": "Все для садоводства",
-    "commission_fbw": 24.5,
-    "commission_fbs": 24.5,
-    "commission_dbs": 24.5,
-    "commission_cc": 19.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 19.5
-  },
-  {
-    "item": "Рукоделие",
-    "category": NaN,
     "commission_fbw": 24.5,
     "commission_fbs": 24.5,
     "commission_dbs": 24.5,
@@ -14430,16 +14210,6 @@
     "commission_reserve": 19.5
   },
   {
-    "item": "Ручной инструмент и оснастка",
-    "category": NaN,
-    "commission_fbw": 26.5,
-    "commission_fbs": 26.5,
-    "commission_dbs": 26.5,
-    "commission_cc": 21.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 21.5
-  },
-  {
     "item": "Штроборезы",
     "category": "Электроинструмент и оборудование",
     "commission_fbw": 26.5,
@@ -15090,16 +14860,6 @@
     "commission_reserve": 22.5
   },
   {
-    "item": "Мебель малых форм",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
-  },
-  {
     "item": "Палитры для смешивания косметики",
     "category": "Красота",
     "commission_fbw": 27.5,
@@ -15508,16 +15268,6 @@
     "commission_cc": 24.5,
     "commission_edbs": 3.0,
     "commission_reserve": 24.5
-  },
-  {
-    "item": "Крупная бытовая техника",
-    "category": NaN,
-    "commission_fbw": 23.5,
-    "commission_fbs": 23.5,
-    "commission_dbs": 23.5,
-    "commission_cc": 18.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 18.5
   },
   {
     "item": "Джемперы",
@@ -16420,16 +16170,6 @@
     "commission_reserve": 22.5
   },
   {
-    "item": "Товары для малышей",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
-  },
-  {
     "item": "Педали для тату машинки",
     "category": "Красота",
     "commission_fbw": 27.5,
@@ -16472,16 +16212,6 @@
   {
     "item": "Аквапанели",
     "category": "Строительные материалы",
-    "commission_fbw": 23.5,
-    "commission_fbs": 23.5,
-    "commission_dbs": 23.5,
-    "commission_cc": 18.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 18.5
-  },
-  {
-    "item": "Строительные материалы",
-    "category": NaN,
     "commission_fbw": 23.5,
     "commission_fbs": 23.5,
     "commission_dbs": 23.5,
@@ -16538,16 +16268,6 @@
     "commission_cc": 19.5,
     "commission_edbs": 3.0,
     "commission_reserve": 19.5
-  },
-  {
-    "item": "Бытовая техника",
-    "category": NaN,
-    "commission_fbw": 20.5,
-    "commission_fbs": 20.5,
-    "commission_dbs": 20.5,
-    "commission_cc": 15.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 15.5
   },
   {
     "item": "Тестеры давления масла",
@@ -17568,16 +17288,6 @@
     "commission_cc": 16.5,
     "commission_edbs": 3.0,
     "commission_reserve": 16.5
-  },
-  {
-    "item": "Ветаптека",
-    "category": NaN,
-    "commission_fbw": 16.5,
-    "commission_fbs": 16.5,
-    "commission_dbs": 16.5,
-    "commission_cc": 11.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 11.5
   },
   {
     "item": "Средства для компостов",
@@ -20770,16 +20480,6 @@
     "commission_reserve": 18.5
   },
   {
-    "item": "Текстиль для дома",
-    "category": NaN,
-    "commission_fbw": 24.5,
-    "commission_fbs": 24.5,
-    "commission_dbs": 24.5,
-    "commission_cc": 19.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 19.5
-  },
-  {
     "item": "Одеяла одноразовые",
     "category": "Здоровье",
     "commission_fbw": 27.5,
@@ -20860,16 +20560,6 @@
     "commission_reserve": 15.5
   },
   {
-    "item": "Мебель мягкая",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
-  },
-  {
     "item": "Разъемы автомобильные",
     "category": "Автозапчасти",
     "commission_fbw": 21.5,
@@ -20928,16 +20618,6 @@
     "commission_cc": 16.5,
     "commission_edbs": 3.0,
     "commission_reserve": 16.5
-  },
-  {
-    "item": "Декор интерьера",
-    "category": NaN,
-    "commission_fbw": 24.5,
-    "commission_fbs": 24.5,
-    "commission_dbs": 24.5,
-    "commission_cc": 19.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 19.5
   },
   {
     "item": "Роллы",
@@ -23080,16 +22760,6 @@
     "commission_reserve": 4.5
   },
   {
-    "item": "Техника для кухни",
-    "category": NaN,
-    "commission_fbw": 19.5,
-    "commission_fbs": 19.5,
-    "commission_dbs": 19.5,
-    "commission_cc": 14.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 14.5
-  },
-  {
     "item": "Комплектующие топливных баков",
     "category": "Автозапчасти",
     "commission_fbw": 21.5,
@@ -23118,16 +22788,6 @@
     "commission_cc": 21.5,
     "commission_edbs": 3.0,
     "commission_reserve": 21.5
-  },
-  {
-    "item": "Белье для малышей",
-    "category": NaN,
-    "commission_fbw": 29.5,
-    "commission_fbs": 29.5,
-    "commission_dbs": 29.5,
-    "commission_cc": 24.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 24.5
   },
   {
     "item": "Тестеры батареек",
@@ -23570,16 +23230,6 @@
     "commission_reserve": 18.5
   },
   {
-    "item": "Садовая техника",
-    "category": NaN,
-    "commission_fbw": 23.5,
-    "commission_fbs": 23.5,
-    "commission_dbs": 23.5,
-    "commission_cc": 18.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 18.5
-  },
-  {
     "item": "Чемоданы",
     "category": "Аксессуары",
     "commission_fbw": 29.5,
@@ -23700,26 +23350,6 @@
     "commission_reserve": 11.5
   },
   {
-    "item": "Головные уборы",
-    "category": NaN,
-    "commission_fbw": 29.5,
-    "commission_fbs": 29.5,
-    "commission_dbs": 29.5,
-    "commission_cc": 24.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 24.5
-  },
-  {
-    "item": "Обувь",
-    "category": NaN,
-    "commission_fbw": 29.5,
-    "commission_fbs": 29.5,
-    "commission_dbs": 29.5,
-    "commission_cc": 24.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 24.5
-  },
-  {
     "item": "Электро дрифт-карты",
     "category": "Электротранспорт",
     "commission_fbw": 25.5,
@@ -23750,16 +23380,6 @@
     "commission_reserve": 24.5
   },
   {
-    "item": "Детское питание",
-    "category": NaN,
-    "commission_fbw": 19.5,
-    "commission_fbs": 19.5,
-    "commission_dbs": 19.5,
-    "commission_cc": 14.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 14.5
-  },
-  {
     "item": "Выпрямители волос",
     "category": "Бытовая техника",
     "commission_fbw": 20.5,
@@ -23788,16 +23408,6 @@
     "commission_cc": 16.5,
     "commission_edbs": 3.0,
     "commission_reserve": 16.5
-  },
-  {
-    "item": "Игрушки",
-    "category": NaN,
-    "commission_fbw": 23.5,
-    "commission_fbs": 23.5,
-    "commission_dbs": 23.5,
-    "commission_cc": 18.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 18.5
   },
   {
     "item": "Вкладыши после мастэктомии",
@@ -23878,16 +23488,6 @@
     "commission_cc": 22.5,
     "commission_edbs": 3.0,
     "commission_reserve": 22.5
-  },
-  {
-    "item": "Аксессуары для малышей",
-    "category": NaN,
-    "commission_fbw": 29.5,
-    "commission_fbs": 29.5,
-    "commission_dbs": 29.5,
-    "commission_cc": 24.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 24.5
   },
   {
     "item": "Колесные спицы для мототехники",
@@ -24330,16 +23930,6 @@
     "commission_reserve": 9.5
   },
   {
-    "item": "Автозапчасти",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
-  },
-  {
     "item": "Секс машины",
     "category": "Товары для взрослых",
     "commission_fbw": 24.5,
@@ -24352,16 +23942,6 @@
   {
     "item": "Подставки для казана",
     "category": "Посуда и инвентарь",
-    "commission_fbw": 24.5,
-    "commission_fbs": 24.5,
-    "commission_dbs": 24.5,
-    "commission_cc": 19.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 19.5
-  },
-  {
-    "item": "Хозяйственные товары",
-    "category": NaN,
     "commission_fbw": 24.5,
     "commission_fbs": 24.5,
     "commission_dbs": 24.5,
@@ -24388,16 +23968,6 @@
     "commission_cc": 24.5,
     "commission_edbs": 3.0,
     "commission_reserve": 24.5
-  },
-  {
-    "item": "Посуда и инвентарь",
-    "category": NaN,
-    "commission_fbw": 24.5,
-    "commission_fbs": 24.5,
-    "commission_dbs": 24.5,
-    "commission_cc": 19.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 19.5
   },
   {
     "item": "Отруби",
@@ -24558,16 +24128,6 @@
     "commission_cc": 24.5,
     "commission_edbs": 3.0,
     "commission_reserve": 24.5
-  },
-  {
-    "item": "Товары для взрослых",
-    "category": NaN,
-    "commission_fbw": 24.5,
-    "commission_fbs": 24.5,
-    "commission_dbs": 24.5,
-    "commission_cc": 19.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 19.5
   },
   {
     "item": "Кабели",
@@ -24940,16 +24500,6 @@
     "commission_reserve": 15.5
   },
   {
-    "item": "Здоровье",
-    "category": NaN,
-    "commission_fbw": 27.5,
-    "commission_fbs": 27.5,
-    "commission_dbs": 27.5,
-    "commission_cc": 22.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 22.5
-  },
-  {
     "item": "Косточки для воротника рубашки",
     "category": "Аксессуары",
     "commission_fbw": 29.5,
@@ -25142,16 +24692,6 @@
   {
     "item": "Брезенты",
     "category": "Товары для отдыха и кемпинга",
-    "commission_fbw": 23.5,
-    "commission_fbs": 23.5,
-    "commission_dbs": 23.5,
-    "commission_cc": 18.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 18.5
-  },
-  {
-    "item": "Товары для курения",
-    "category": NaN,
     "commission_fbw": 23.5,
     "commission_fbs": 23.5,
     "commission_dbs": 23.5,
@@ -25920,16 +25460,6 @@
     "commission_reserve": 17.5
   },
   {
-    "item": "Спортивный товар",
-    "category": NaN,
-    "commission_fbw": 22.5,
-    "commission_fbs": 22.5,
-    "commission_dbs": 22.5,
-    "commission_cc": 17.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 17.5
-  },
-  {
     "item": "Тридеры",
     "category": "Спортивный товар",
     "commission_fbw": 22.5,
@@ -26020,16 +25550,6 @@
     "commission_reserve": 3.0
   },
   {
-    "item": "Смартфоны и аксессуары",
-    "category": NaN,
-    "commission_fbw": 29.5,
-    "commission_fbs": 29.5,
-    "commission_dbs": 29.5,
-    "commission_cc": 24.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 24.5
-  },
-  {
     "item": "Блоки подогрева и стерилизации воды для поилки",
     "category": "Товары для животных",
     "commission_fbw": 16.5,
@@ -26038,16 +25558,6 @@
     "commission_cc": 11.5,
     "commission_edbs": 3.0,
     "commission_reserve": 11.5
-  },
-  {
-    "item": "Спортивная обувь",
-    "category": NaN,
-    "commission_fbw": 29.5,
-    "commission_fbs": 29.5,
-    "commission_dbs": 29.5,
-    "commission_cc": 24.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 24.5
   },
   {
     "item": "Пеленки для взрослых",
@@ -27572,16 +27082,6 @@
   {
     "item": "Виртуальные очки",
     "category": "Смартфоны и аксессуары",
-    "commission_fbw": 29.5,
-    "commission_fbs": 29.5,
-    "commission_dbs": 29.5,
-    "commission_cc": 24.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 24.5
-  },
-  {
-    "item": "Спецодежда и СИЗы",
-    "category": NaN,
     "commission_fbw": 29.5,
     "commission_fbs": 29.5,
     "commission_dbs": 29.5,
@@ -29430,16 +28930,6 @@
     "commission_reserve": 22.5
   },
   {
-    "item": "Товары для животных",
-    "category": NaN,
-    "commission_fbw": 16.5,
-    "commission_fbs": 16.5,
-    "commission_dbs": 16.5,
-    "commission_cc": 11.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 11.5
-  },
-  {
     "item": "Ванночки для ног",
     "category": "Красота",
     "commission_fbw": 27.5,
@@ -31258,16 +30748,6 @@
     "commission_cc": 4.5,
     "commission_edbs": 3.0,
     "commission_reserve": 4.5
-  },
-  {
-    "item": "Спортивное питание и косметика",
-    "category": NaN,
-    "commission_fbw": 20.5,
-    "commission_fbs": 20.5,
-    "commission_dbs": 20.5,
-    "commission_cc": 15.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 15.5
   },
   {
     "item": "Фотошторы",
@@ -33198,16 +32678,6 @@
     "commission_cc": 17.5,
     "commission_edbs": 3.0,
     "commission_reserve": 17.5
-  },
-  {
-    "item": "Для праздника",
-    "category": NaN,
-    "commission_fbw": 27.5,
-    "commission_fbs": 27.5,
-    "commission_dbs": 27.5,
-    "commission_cc": 22.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 22.5
   },
   {
     "item": "Наборы для праздника",
@@ -37790,16 +37260,6 @@
     "commission_reserve": 19.5
   },
   {
-    "item": "Умный дом и безопасность",
-    "category": NaN,
-    "commission_fbw": 19.5,
-    "commission_fbs": 19.5,
-    "commission_dbs": 19.5,
-    "commission_cc": 14.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 14.5
-  },
-  {
     "item": "Защитные кейсы",
     "category": "Аксессуары",
     "commission_fbw": 29.5,
@@ -38098,16 +37558,6 @@
     "commission_cc": 21.5,
     "commission_edbs": 3.0,
     "commission_reserve": 21.5
-  },
-  {
-    "item": "Бытовая химия",
-    "category": NaN,
-    "commission_fbw": 24.5,
-    "commission_fbs": 24.5,
-    "commission_dbs": 24.5,
-    "commission_cc": 19.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 19.5
   },
   {
     "item": "Насадки для строительных миксеров",
@@ -39528,16 +38978,6 @@
     "commission_cc": 22.5,
     "commission_edbs": 3.0,
     "commission_reserve": 22.5
-  },
-  {
-    "item": "Автоэлектроника",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
   },
   {
     "item": "Бутылки сувенирные",
@@ -44850,16 +44290,6 @@
     "commission_reserve": 22.5
   },
   {
-    "item": "Одежда",
-    "category": NaN,
-    "commission_fbw": 29.5,
-    "commission_fbs": 29.5,
-    "commission_dbs": 29.5,
-    "commission_cc": 24.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 24.5
-  },
-  {
     "item": "Пиво",
     "category": "Алкогольная продукция",
     "commission_fbw": 4.5,
@@ -46900,16 +46330,6 @@
     "commission_reserve": 19.5
   },
   {
-    "item": "Телевизоры и аудиотехника",
-    "category": NaN,
-    "commission_fbw": 24.5,
-    "commission_fbs": 24.5,
-    "commission_dbs": 24.5,
-    "commission_cc": 19.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 19.5
-  },
-  {
     "item": "Пастила",
     "category": "Продукты",
     "commission_fbw": 16.5,
@@ -48720,16 +48140,6 @@
     "commission_reserve": 19.5
   },
   {
-    "item": "Восстановленные",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
-  },
-  {
     "item": "Ремкомплекты для ванны",
     "category": "Сантехника",
     "commission_fbw": 22.5,
@@ -49590,16 +49000,6 @@
     "commission_reserve": 24.5
   },
   {
-    "item": "Товары для отдыха и кемпинга",
-    "category": NaN,
-    "commission_fbw": 23.5,
-    "commission_fbs": 23.5,
-    "commission_dbs": 23.5,
-    "commission_cc": 18.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 18.5
-  },
-  {
     "item": "Анкеры",
     "category": "Строительные материалы",
     "commission_fbw": 23.5,
@@ -50150,16 +49550,6 @@
     "commission_reserve": 22.5
   },
   {
-    "item": "Садовые инструменты и полив",
-    "category": NaN,
-    "commission_fbw": 24.5,
-    "commission_fbs": 24.5,
-    "commission_dbs": 24.5,
-    "commission_cc": 19.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 19.5
-  },
-  {
     "item": "Цилиндры для мототехники",
     "category": "Мототовары",
     "commission_fbw": 21.5,
@@ -50348,16 +49738,6 @@
     "commission_cc": 15.5,
     "commission_edbs": 3.0,
     "commission_reserve": 15.5
-  },
-  {
-    "item": "Сетевое оборудование",
-    "category": NaN,
-    "commission_fbw": 19.5,
-    "commission_fbs": 19.5,
-    "commission_dbs": 19.5,
-    "commission_cc": 14.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 14.5
   },
   {
     "item": "Защита корпуса",
@@ -51608,16 +50988,6 @@
     "commission_cc": 16.5,
     "commission_edbs": 3.0,
     "commission_reserve": 16.5
-  },
-  {
-    "item": "Сервисные услуги",
-    "category": NaN,
-    "commission_fbw": 19.5,
-    "commission_fbs": 19.5,
-    "commission_dbs": 19.5,
-    "commission_cc": 14.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 14.5
   },
   {
     "item": "Орехи",
@@ -53850,16 +53220,6 @@
     "commission_reserve": 18.5
   },
   {
-    "item": "Книжная продукция и диски",
-    "category": NaN,
-    "commission_fbw": 24.5,
-    "commission_fbs": 24.5,
-    "commission_dbs": 24.5,
-    "commission_cc": 19.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 19.5
-  },
-  {
     "item": "Аксессуары и запчасти для кофемашин и кофеварок",
     "category": "Техника для кухни",
     "commission_fbw": 19.5,
@@ -53902,16 +53262,6 @@
   {
     "item": "Подставки для варки на пару",
     "category": "Посуда и инвентарь",
-    "commission_fbw": 24.5,
-    "commission_fbs": 24.5,
-    "commission_dbs": 24.5,
-    "commission_cc": 19.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 19.5
-  },
-  {
-    "item": "Все для садоводства",
-    "category": NaN,
     "commission_fbw": 24.5,
     "commission_fbs": 24.5,
     "commission_dbs": 24.5,
@@ -54058,16 +53408,6 @@
     "commission_cc": 19.5,
     "commission_edbs": 3.0,
     "commission_reserve": 19.5
-  },
-  {
-    "item": "Периферия и аксессуары",
-    "category": NaN,
-    "commission_fbw": 19.5,
-    "commission_fbs": 19.5,
-    "commission_dbs": 19.5,
-    "commission_cc": 14.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 14.5
   },
   {
     "item": "Реле времени",
@@ -54968,16 +54308,6 @@
     "commission_cc": 16.5,
     "commission_edbs": 3.0,
     "commission_reserve": 16.5
-  },
-  {
-    "item": "Электроника",
-    "category": NaN,
-    "commission_fbw": 27.5,
-    "commission_fbs": 27.5,
-    "commission_dbs": 27.5,
-    "commission_cc": 22.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 22.5
   },
   {
     "item": "Наборы игрушек для взрослых",
@@ -56030,16 +55360,6 @@
     "commission_reserve": 22.5
   },
   {
-    "item": "Шторы и аксессуары",
-    "category": NaN,
-    "commission_fbw": 24.5,
-    "commission_fbs": 24.5,
-    "commission_dbs": 24.5,
-    "commission_cc": 19.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 19.5
-  },
-  {
     "item": "Блоки автоматики для насосов",
     "category": "Садовые инструменты и полив",
     "commission_fbw": 24.5,
@@ -56252,16 +55572,6 @@
   {
     "item": "Патроны для ламп автомобильные",
     "category": "Автозапчасти",
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
-  },
-  {
-    "item": "Мебель офисная и торговое оборудование",
-    "category": NaN,
     "commission_fbw": 21.5,
     "commission_fbs": 21.5,
     "commission_dbs": 21.5,
@@ -57380,16 +56690,6 @@
     "commission_reserve": 22.5
   },
   {
-    "item": "Красота",
-    "category": NaN,
-    "commission_fbw": 27.5,
-    "commission_fbs": 27.5,
-    "commission_dbs": 27.5,
-    "commission_cc": 22.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 22.5
-  },
-  {
     "item": "Бачки автомобильные",
     "category": "Автозапчасти",
     "commission_fbw": 21.5,
@@ -57528,16 +56828,6 @@
     "commission_cc": 19.5,
     "commission_edbs": 3.0,
     "commission_reserve": 19.5
-  },
-  {
-    "item": "Оргтехника",
-    "category": NaN,
-    "commission_fbw": 19.5,
-    "commission_fbs": 19.5,
-    "commission_dbs": 19.5,
-    "commission_cc": 14.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 14.5
   },
   {
     "item": "Жилеты утяжелители",
@@ -59440,16 +58730,6 @@
     "commission_reserve": 22.5
   },
   {
-    "item": "Аксессуары для волос",
-    "category": NaN,
-    "commission_fbw": 29.5,
-    "commission_fbs": 29.5,
-    "commission_dbs": 29.5,
-    "commission_cc": 24.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 24.5
-  },
-  {
     "item": "Велосумки",
     "category": "Спортивные аксессуары",
     "commission_fbw": 24.5,
@@ -59808,16 +59088,6 @@
     "commission_cc": 24.5,
     "commission_edbs": 3.0,
     "commission_reserve": 24.5
-  },
-  {
-    "item": "Алкогольная продукция",
-    "category": NaN,
-    "commission_fbw": 4.5,
-    "commission_fbs": 4.5,
-    "commission_dbs": 4.5,
-    "commission_cc": 4.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 4.5
   },
   {
     "item": "Свечи зажигания для мототехники",
@@ -60198,16 +59468,6 @@
     "commission_cc": 22.5,
     "commission_edbs": 3.0,
     "commission_reserve": 22.5
-  },
-  {
-    "item": "Мебель корпусная и мебель для хранения",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
   },
   {
     "item": "Замки и защелки мебельные",
@@ -60808,26 +60068,6 @@
     "commission_cc": 22.5,
     "commission_edbs": 3.0,
     "commission_reserve": 22.5
-  },
-  {
-    "item": "Спортивные аксессуары",
-    "category": NaN,
-    "commission_fbw": 24.5,
-    "commission_fbs": 24.5,
-    "commission_dbs": 24.5,
-    "commission_cc": 19.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 19.5
-  },
-  {
-    "item": "Канцелярские товары",
-    "category": NaN,
-    "commission_fbw": 24.5,
-    "commission_fbs": 24.5,
-    "commission_dbs": 24.5,
-    "commission_cc": 19.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 19.5
   },
   {
     "item": "Контейнеры для корма",
@@ -62180,16 +61420,6 @@
     "commission_reserve": 17.5
   },
   {
-    "item": "Аксессуары",
-    "category": NaN,
-    "commission_fbw": 29.5,
-    "commission_fbs": 29.5,
-    "commission_dbs": 29.5,
-    "commission_cc": 24.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 24.5
-  },
-  {
     "item": "Пояса спасательные",
     "category": "Спортивный товар",
     "commission_fbw": 22.5,
@@ -62790,16 +62020,6 @@
     "commission_reserve": 19.5
   },
   {
-    "item": "Продукты",
-    "category": NaN,
-    "commission_fbw": 16.5,
-    "commission_fbs": 16.5,
-    "commission_dbs": 4.5,
-    "commission_cc": 4.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 4.5
-  },
-  {
     "item": "Радиосинхронизаторы",
     "category": "Электроника",
     "commission_fbw": 27.5,
@@ -62918,16 +62138,6 @@
     "commission_cc": 15.5,
     "commission_edbs": 3.0,
     "commission_reserve": 15.5
-  },
-  {
-    "item": "Спортивная одежда",
-    "category": NaN,
-    "commission_fbw": 29.5,
-    "commission_fbs": 29.5,
-    "commission_dbs": 29.5,
-    "commission_cc": 24.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 24.5
   },
   {
     "item": "Горох",
@@ -63350,16 +62560,6 @@
     "commission_reserve": 24.5
   },
   {
-    "item": "Транспортные средства",
-    "category": NaN,
-    "commission_fbw": 0.5,
-    "commission_fbs": 0.5,
-    "commission_dbs": 0.5,
-    "commission_cc": 0.5,
-    "commission_edbs": 0.5,
-    "commission_reserve": 0.5
-  },
-  {
     "item": "Ароматизаторы воздуха электрические",
     "category": "Бытовая техника",
     "commission_fbw": 20.5,
@@ -63438,16 +62638,6 @@
     "commission_cc": 4.5,
     "commission_edbs": 3.0,
     "commission_reserve": 4.5
-  },
-  {
-    "item": "Фарма",
-    "category": NaN,
-    "commission_fbw": 3.0,
-    "commission_fbs": 3.0,
-    "commission_dbs": 3.0,
-    "commission_cc": 3.0,
-    "commission_edbs": 3.0,
-    "commission_reserve": 3.0
   },
   {
     "item": "Рыбные деликатесы",
@@ -64530,16 +63720,6 @@
     "commission_reserve": 18.5
   },
   {
-    "item": "Аксессуары для обуви",
-    "category": NaN,
-    "commission_fbw": 29.5,
-    "commission_fbs": 29.5,
-    "commission_dbs": 29.5,
-    "commission_cc": 24.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 24.5
-  },
-  {
     "item": "Электроролики",
     "category": "Электротранспорт",
     "commission_fbw": 25.5,
@@ -65098,16 +64278,6 @@
     "commission_cc": 19.5,
     "commission_edbs": 3.0,
     "commission_reserve": 19.5
-  },
-  {
-    "item": "Мототовары",
-    "category": NaN,
-    "commission_fbw": 21.5,
-    "commission_fbs": 21.5,
-    "commission_dbs": 21.5,
-    "commission_cc": 16.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 16.5
   },
   {
     "item": "Альпинистские кошки",
@@ -65920,16 +65090,6 @@
     "commission_reserve": 17.5
   },
   {
-    "item": "Бижутерия",
-    "category": NaN,
-    "commission_fbw": 23.5,
-    "commission_fbs": 23.5,
-    "commission_dbs": 23.5,
-    "commission_cc": 18.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 18.5
-  },
-  {
     "item": "Бумага художественная",
     "category": "Канцелярские товары",
     "commission_fbw": 24.5,
@@ -66092,26 +65252,6 @@
   {
     "item": "Балалайки",
     "category": "Профессиональные музыкальные инструменты",
-    "commission_fbw": 23.5,
-    "commission_fbs": 23.5,
-    "commission_dbs": 23.5,
-    "commission_cc": 18.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 18.5
-  },
-  {
-    "item": "Профессиональные музыкальные инструменты",
-    "category": NaN,
-    "commission_fbw": 23.5,
-    "commission_fbs": 23.5,
-    "commission_dbs": 23.5,
-    "commission_cc": 18.5,
-    "commission_edbs": 3.0,
-    "commission_reserve": 18.5
-  },
-  {
-    "item": "Страхование",
-    "category": NaN,
     "commission_fbw": 23.5,
     "commission_fbs": 23.5,
     "commission_dbs": 23.5,
