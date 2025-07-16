@@ -4,111 +4,125 @@
 <meta charset="UTF-8"/>
 <title>Калькулятор маржи WB</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!-- Tom‑Select -->
 <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet"/>
 <style>
-:root{--purple:#a500ff;--purple-dark:#8300d0;--grey-100:#f7f7f7;--grey-600:#666;--white:#fff;--success:#28a745;--danger:#dc3545}
-*{box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
-body{margin:0;background:var(--grey-100);display:flex;justify-content:center;padding:40px 16px}
-.card{width:100%;max-width:700px;background:var(--white);border-radius:16px;padding:32px 28px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
-h1{margin:0 0 28px;text-align:center;font-size:2rem;color:var(--purple)}
-.row{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:20px}
-.row.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
-label{flex:1 1 200px;display:flex;flex-direction:column;font-size:.95rem;color:var(--grey-600)}
-select,input[type=number]{margin-top:6px;padding:10px 12px;font-size:1rem;border:1px solid #ddd;border-radius:10px;min-width:0}
-select:focus,input:focus{border-color:var(--purple);outline:none;box-shadow:0 0 0 3px rgba(165,0,255,.2)}
-button{display:block;width:100%;max-width:260px;margin:0 auto;padding:14px 20px;font-size:1.1rem;font-weight:600;color:var(--white);background:var(--purple);border:0;border-radius:12px;cursor:pointer;transition:.25s}
-button:hover{background:var(--purple-dark);transform:translateY(-3px);box-shadow:0 8px 15px rgba(165,0,255,.25)}
-button:active{transform:none;box-shadow:0 4px 10px rgba(165,0,255,.15)}
-.output{margin-top:36px;border-top:1px solid #eee;padding-top:24px;opacity:0;animation:fade .6s forwards}@keyframes fade{to{opacity:1}}
-.output-item{display:flex;justify-content:space-between;margin-bottom:10px;font-size:1rem}
-.output-item span:first-child{font-weight:600}.output-item span:last-child{font-weight:600;color:var(--purple)}
-.positive{color:var(--success)!important}.negative{color:var(--danger)!important}
-.info{margin-top:24px;font-size:.85rem;color:var(--grey-600);background:#fafafa;border:1px solid #eee;border-radius:10px;padding:14px 16px;line-height:1.5}
+  :root{--purple:#a500ff;--purple-dark:#8300d0;--grey-100:#f7f7f7;--grey-600:#666;--white:#fff;
+        --success:#28a745;--danger:#dc3545}
+  *{box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
+  body{margin:0;background:var(--grey-100);display:flex;justify-content:center;padding:40px 16px}
+  .card{width:100%;max-width:700px;background:var(--white);border-radius:16px;padding:32px 28px;
+        box-shadow:0 10px 30px rgba(0,0,0,.08)}
+  h1{margin:0 0 28px;text-align:center;font-size:2rem;color:var(--purple)}
+  .row{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:20px}
+  .row.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
+  label{flex:1 1 200px;display:flex;flex-direction:column;font-size:.95rem;color:var(--grey-600)}
+  select,input[type=number]{margin-top:6px;padding:10px 12px;font-size:1rem;border:1px solid #ddd;border-radius:10px}
+  select:focus,input:focus{border-color:var(--purple);outline:none;box-shadow:0 0 0 3px rgba(165,0,255,.2)}
+  button{display:block;width:100%;max-width:260px;margin:0 auto;padding:14px 20px;font-size:1.1rem;font-weight:600;
+         color:var(--white);background:var(--purple);border:0;border-radius:12px;cursor:pointer;transition:.25s}
+  button:hover{background:var(--purple-dark);transform:translateY(-3px);box-shadow:0 8px 15px rgba(165,0,255,.25)}
+  button:active{transform:none;box-shadow:0 4px 10px rgba(165,0,255,.15)}
+  .output{margin-top:36px;border-top:1px solid #eee;padding-top:24px;opacity:0;animation:fade .6s forwards}
+  @keyframes fade{to{opacity:1}}
+  .output-item{display:flex;justify-content:space-between;margin-bottom:10px;font-size:1rem}
+  .output-item span:first-child{font-weight:600}
+  .output-item span:last-child{font-weight:600;color:var(--purple)}
+  .positive{color:var(--success)!important}.negative{color:var(--danger)!important}
+  .info{margin-top:24px;font-size:.85rem;color:var(--grey-600);background:#fafafa;border:1px solid #eee;
+        border-radius:10px;padding:14px 16px;line-height:1.5}
 </style>
 </head>
 <body>
 <div class="card">
-<h1>Калькулятор маржи WB</h1>
+  <h1>Калькулятор маржи WB</h1>
 
-<div class="row">
-  <label>Категория / предмет
-    <select id="category" placeholder="Начните вводить…" disabled></select>
-  </label>
-  <label>Режим работы
-    <select id="mode">
-      <option value="commission_fbw">FBW (Склад WB)</option>
-      <option value="commission_fbs">FBS (Маркетплейс)</option>
-      <option value="commission_dbs">DBS / DBW</option>
-      <option value="commission_cc">C&C (Самовывоз)</option>
-      <option value="commission_edbs">EDBS (Экспресс)</option>
-      <option value="commission_reserve">Бронирование</option>
-    </select>
-  </label>
-</div>
+  <!-- Категория + режим -->
+  <div class="row">
+    <label>Категория / предмет
+      <select id="category" placeholder="Начните вводить…" disabled></select>
+    </label>
+    <label>Режим работы
+      <select id="mode">
+        <option value="commission_fbw">FBW (Склад WB)</option>
+        <option value="commission_fbs">FBS (Маркетплейс)</option>
+        <option value="commission_dbs">DBS / DBW</option>
+        <option value="commission_cc">C&C (Самовывоз)</option>
+        <option value="commission_edbs">EDBS (Экспресс)</option>
+        <option value="commission_reserve">Бронирование</option>
+      </select>
+    </label>
+  </div>
 
-<div class="row">
-  <label>Себестоимость, ₽<input type="number" id="costPrice" value="1000" min="0" step="0.01"></label>
-  <label>Цена продажи, ₽<input type="number" id="sellingPrice" value="2500" min="0" step="0.01"></label>
-</div>
+  <!-- Цены -->
+  <div class="row">
+    <label>Себестоимость, ₽<input type="number" id="costPrice" value="1000" min="0" step="0.01"></label>
+    <label>Цена продажи, ₽   <input type="number" id="sellingPrice" value="2500" min="0" step="0.01"></label>
+  </div>
 
-<div class="row grid">
-  <label>Длина, см <input type="number" id="length" value="20" min="0" step="0.1"></label>
-  <label>Ширина, см <input type="number" id="width" value="15" min="0" step="0.1"></label>
-  <label>Высота, см <input type="number" id="height" value="10" min="0" step="0.1"></label>
-</div>
+  <!-- Габариты -->
+  <div class="row grid">
+    <label>Длина, см <input type="number" id="length" value="20" min="0" step="0.1"></label>
+    <label>Ширина, см <input type="number" id="width" value="15" min="0" step="0.1"></label>
+    <label>Высота, см <input type="number" id="height" value="10" min="0" step="0.1"></label>
+  </div>
 
-<div class="row">
-  <label>Хранение, ₽ (20 дн)<input type="number" id="storage" value="0" readonly></label>
-  <label>Прочие расходы, ₽<input type="number" id="otherCosts" value="0" min="0" step="0.01"></label>
-</div>
+  <!-- Хранение + прочие -->
+  <div class="row">
+    <label>Хранение, ₽ (20 дн)<input type="number" id="storage" value="0" readonly></label>
+    <label>Прочие расходы, ₽     <input type="number" id="otherCosts" value="0" min="0" step="0.01"></label>
+  </div>
 
-<button id="calculate">Рассчитать</button>
+  <button id="calculate">Рассчитать</button>
 
-<div id="results" class="output" style="display:none">
-  <div class="output-item"><span>Комиссия (вкл. НДС)</span><span id="commissionAmount">0 ₽</span></div>
-  <div class="output-item"><span>Логистика (вкл. НДС)</span><span id="logisticsAmount">0 ₽</span></div>
-  <div class="output-item"><span>Возмещение НДС</span><span id="vatRefund">0 ₽</span></div>
-  <div class="output-item"><span>Общие расходы</span><span id="totalCosts">0 ₽</span></div>
-  <div class="output-item"><span>Валовая прибыль</span><span id="grossProfit">0 ₽</span></div>
-  <div class="output-item"><span>Налог на прибыль 20%</span><span id="profitTax">0 ₽</span></div>
-  <div class="output-item"><span>Чистая прибыль</span><span id="netProfit">0 ₽</span></div>
-  <div class="output-item"><span>Маржа</span><span id="margin">0 %</span></div>
-</div>
+  <!-- Итоги -->
+  <div id="results" class="output" style="display:none">
+    <div class="output-item"><span>Комиссия (вкл. НДС)</span><span id="commissionAmount">0 ₽</span></div>
+    <div class="output-item"><span>Логистика (вкл. НДС)</span><span id="logisticsAmount">0 ₽</span></div>
+    <div class="output-item"><span>Возмещение НДС</span><span id="vatRefund">0 ₽</span></div>
+    <div class="output-item"><span>Общие расходы</span><span id="totalCosts">0 ₽</span></div>
+    <div class="output-item"><span>Валовая прибыль</span><span id="grossProfit">0 ₽</span></div>
+    <div class="output-item"><span>Налог на прибыль 20%</span><span id="profitTax">0 ₽</span></div>
+    <div class="output-item"><span>Чистая прибыль</span><span id="netProfit">0 ₽</span></div>
+    <div class="output-item"><span>Маржа</span><span id="margin">0 %</span></div>
+  </div>
 
-<p class="info">
-  В выпадающем списке показывается «Название — Категория» (из Excel). Ищется по любой части строки — «швабры» найдётся.<br>
-  Хранение: 0 ,10 ₽ × литры × <strong>20 дней</strong> (литры = объём, округлённый вверх).<br>
-  Логистика: 75 ₽ первый литр + 15 ₽ за каждый следующий.
-</p>
+  <p class="info">
+    Поле ищет одновременно по названию и категории (введите «швабры» — найдётся).<br>
+    Хранение: 0 ,10 ₽ × литры × 20 дней (литры — объём, округлённый вверх).<br>
+    Логистика: 75 ₽ первый литр + 15 ₽ за каждый следующий.
+  </p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
 <script>
-/* --- константы --- */
+/* ===== Константы ===== */
 const VAT = 0.20, PROFIT_TAX = 0.20;
-const STORAGE_RATE = 0.10;    // ₽ за литр в день
-const TURNOVER_DAYS = 20;     // дней хранения
+const STORAGE_RATE = 0.10;        // ₽/литр/день
+const TURNOVER_DAYS = 20;         // дней хранения
 const money = v => v.toLocaleString('ru-RU',{style:'currency',currency:'RUB',minimumFractionDigits:2});
 let categories = [];
 
-/* --- загрузка JSON и полный список --- */
+/* ===== Загрузка JSON и построение списка ===== */
 fetch('categories.json')
   .then(r => r.json())
   .then(data => {
-    categories = data;  // ожидаем поля {item, category, commission_fbw, ...}
-    const opts = data.map((c,i)=>
-      `<option value="${i}">${c.item} — ${c.category}</option>`
-    ).join('');
+    categories = data;
+    const opts = data.map((c,i)=>{
+      const item = (c.item||'').trim();
+      const text = item ? `${item} — ${c.category}` : c.category;
+      return `<option value="${i}">${text}</option>`;
+    }).join('');
     const sel = document.getElementById('category');
     sel.innerHTML = opts; sel.disabled = false;
-    new TomSelect(sel,{maxOptions:12000,placeholder:'Введите часть названия…'});
+    new TomSelect(sel,{maxOptions:15000,placeholder:'Введите часть названия…'});
   })
   .catch(e => console.error('categories.json error',e));
 
-/* --- расчёт --- */
+/* ===== Расчёт ===== */
 document.getElementById('calculate').addEventListener('click',()=>{
-  const idx = +qs('category').value;
-  const cat = categories[idx] || {};
+  const idx  = +qs('category').value;
+  const cat  = categories[idx] || {};
   const mode = qs('mode').value;
 
   const sell = +qs('sellingPrice').value || 0;
@@ -119,33 +133,33 @@ document.getElementById('calculate').addEventListener('click',()=>{
         H = +qs('height').value || 0;
 
   /* комиссия */
-  const commPct = +cat[mode] || 0;
+  const commPct     = +cat[mode] || 0;
   const commWithVat = sell * commPct / 100;
   const commVatBack = commWithVat * VAT / (1+VAT);
 
-  /* литры, логистика */
-  const litres = Math.ceil((L*W*H)/1000);
-  const logWithVat = litres? 75 + Math.max(0,litres-1)*15 : 0;
-  const logVatBack = logWithVat * VAT / (1+VAT);
+  /* логистика */
+  const litres      = Math.ceil((L*W*H)/1000);
+  const logWithVat  = litres ? 75 + Math.max(0, litres-1)*15 : 0;
+  const logVatBack  = logWithVat * VAT / (1+VAT);
 
   /* хранение */
-  const storageAuto = litres * STORAGE_RATE * TURNOVER_DAYS;
-  qs('storage').value = storageAuto.toFixed(2);
+  const storage = litres * STORAGE_RATE * TURNOVER_DAYS;
+  qs('storage').value = storage.toFixed(2);
 
-  const other = +qs('otherCosts').value || 0;
-
-  const total = cost + storageAuto + other +
-                (commWithVat - commVatBack) +
-                (logWithVat  - logVatBack);
+  const other  = +qs('otherCosts').value || 0;
+  const total  = cost + storage + other +
+                 (commWithVat - commVatBack) +
+                 (logWithVat  - logVatBack);
 
   const gross  = sell - total;
-  const tax    = gross>0 ? gross*PROFIT_TAX : 0;
+  const tax    = gross>0 ? gross * PROFIT_TAX : 0;
   const net    = gross - tax;
-  const margin = sell? net/sell*100 : 0;
+  const margin = sell ? net / sell * 100 : 0;
 
+  /* вывод результатов */
   out('commissionAmount', money(commWithVat));
   out('logisticsAmount',  money(logWithVat));
-  out('vatRefund',        money(commVatBack+logVatBack));
+  out('vatRefund',        money(commVatBack + logVatBack));
   out('totalCosts',       money(total));
   out('grossProfit',      money(gross));
   out('profitTax',        money(tax));
@@ -153,13 +167,14 @@ document.getElementById('calculate').addEventListener('click',()=>{
   out('margin',           margin.toFixed(2)+' %');
 
   ['netProfit','margin'].forEach(id=>{
-    qs(id).classList.toggle('positive',net>=0);
-    qs(id).classList.toggle('negative',net<0);
+    qs(id).classList.toggle('positive', net >= 0);
+    qs(id).classList.toggle('negative', net < 0);
   });
+
   const res=qs('results');res.style.display='block';res.classList.remove('output');void res.offsetWidth;res.classList.add('output');
 });
 
-/* helpers */
+/* ===== helpers ===== */
 const qs=id=>document.getElementById(id);
 const out=(id,val)=>qs(id).textContent=val;
 </script>
