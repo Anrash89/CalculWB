@@ -2,103 +2,92 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8" />
-<title>Калькулятор прибыли WB</title>
+<title>Калькулятор прибыли WB</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet" />
 <style>
-/* ===== WB‑like design, but cleaner ===== */
-:root {
-  --wb: #a500ff;
-  --wb-dark: #7d00c2;
-  --gray-50: #f8f8fa;
-  --gray-100: #f1f1f4;
-  --gray-300: #d1d1d8;
-  --gray-700: #4c4c55;
-  --radius: 14px;
-  --shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  --ok: #27ae60;
-  --bad: #eb5757;
+:root{
+  --wb:#a500ff;--wb-dark:#7d00c2;
+  --g50:#fafbfc;--g100:#f1f2f6;--g300:#d5d6de;--g700:#4f5060;
+  --ok:#27ae60;--bad:#eb5757;--rad:14px;--sh:0 8px 26px rgba(0,0,0,.06)
 }
-* { box-sizing: border-box; font-family: "Segoe UI", system-ui, sans-serif; }
-body {
-  margin: 0; background: var(--gray-50); min-height: 100vh;
-  display: flex; justify-content: center; padding: 40px 16px; overflow-x: hidden;
-}
-#wrap { display: grid; gap: 32px; grid-template-columns: 1fr 340px; max-width: 1080px; width: 100%; }
-@media (max-width: 900px) { #wrap { grid-template-columns: 1fr; } }
-.card {
-  background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); animation: rise .6s;
-}
-@keyframes rise { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform:none; } }
-
-/* ---------- left form ---------- */
-#form { padding: 32px 30px; display: flex; flex-direction: column; gap: 26px; }
-h2 { margin: 0; font-size: 1.35rem; color: var(--wb); }
-label { display: flex; flex-direction: column; gap: 6px; font-size: .92rem; color: var(--gray-700); }
-input[type=number], select, input[type=text] { padding: 10px 12px; border: 1px solid var(--gray-300); border-radius: 10px; font-size: 1rem; background: #fff; }
-input:focus, select:focus { border-color: var(--wb); outline: none; box-shadow: 0 0 0 3px rgba(165,0,255,.25); }
-.grid-3 { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
-.grid-2 { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
-.inline { display: flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--gray-700); }
-.inline input { accent-color: var(--wb); }
-
+*{box-sizing:border-box;font-family:"Segoe UI",system-ui,sans-serif}
+body{margin:0;min-height:100vh;background:var(--g50);padding:40px 16px;display:flex;justify-content:center}
+#w{display:grid;gap:32px;grid-template-columns:1fr 380px;max-width:1100px;width:100%}
+@media(max-width:880px){#w{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:var(--rad);box-shadow:var(--sh);animation:rise .5s}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+/* ---------- FORM ---------- */
+#form{padding:34px 30px;display:flex;flex-direction:column;gap:28px}
+h2{margin:0;font-size:1.35rem;color:var(--wb)}
+label{display:flex;flex-direction:column;gap:6px;font-size:.92rem;color:var(--g700)}
+select,input[type=number]{padding:11px 12px;border:1px solid var(--g300);border-radius:10px;font-size:1rem;background:#fff}
+select:focus,input:focus{border-color:var(--wb);outline:none;box-shadow:0 0 0 3px rgba(165,0,255,.25)}
+.grid-3{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+.grid-2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.inline{display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--g700)}
+.inline input{accent-color:var(--wb)}
+.meta{font-size:.78rem;color:var(--g700)}
+button.primary{align-self:flex-start;background:var(--wb);color:#fff;border:none;padding:15px 30px;font-weight:600;border-radius:12px;cursor:pointer;transition:.25s;font-size:1rem}
+button.primary:hover{background:var(--wb-dark);transform:translateY(-2px);box-shadow:0 6px 16px rgba(165,0,255,.25)}
+button.primary:active{transform:none;box-shadow:0 3px 8px rgba(165,0,255,.18)}
 /* slider */
-.range-wrap { position: relative; }
-input[type=range] {
-  width: 100%; height: 6px; border-radius: 3px; appearance: none; background: linear-gradient(90deg, var(--wb) 0, var(--wb) var(--percent,0%), var(--gray-300) var(--percent,0%));
-}
-input[type=range]::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--wb); cursor: pointer; box-shadow: 0 0 0 4px rgba(165,0,255,.25); }
-input[type=range]:active::-webkit-slider-thumb { transform: scale(1.15); }
-
-button.primary {
-  align-self: flex-start; background: var(--wb); color: #fff; border: none; padding: 14px 28px; font-weight: 600; border-radius: 12px; cursor: pointer; transition: .25s; font-size: 1rem;
-}
-button.primary:hover { background: var(--wb-dark); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(165,0,255,.25); }
-button.primary:active { transform: none; box-shadow: 0 3px 8px rgba(165,0,255,.18); }
-
-/* ---------- result card ---------- */
-#out { padding: 28px 24px; display: flex; flex-direction: column; gap: 18px; position: relative; overflow:hidden; }
-#badge { font-size: .78rem; background: var(--wb); color:#fff; padding: 4px 10px; border-radius: 10px; font-weight: 600; width:max-content; animation: fade .6s; }
-.metric { display: flex; justify-content: space-between; font-size: .9rem; }
-.metric span:first-child { opacity: .75; }
-.metric .val { font-weight: 600; }
-.metric.profit .val { color: var(--ok); }
-.metric.loss .val { color: var(--bad); }
-
-/* subtle bg */
-#out::after { content:""; position:absolute; right:-80px; bottom:-80px; width:160px; height:160px; background: var(--wb); opacity:.08; border-radius:50%; animation: spin 16s linear infinite; }
-@keyframes spin { from{ transform:rotate(0);} to { transform:rotate(360deg);} }
+.range{margin-top:6px}
+.range input{width:100%;height:6px;border-radius:3px;appearance:none;
+  background:linear-gradient(90deg,var(--wb)0,var(--wb)var(--p,0%),var(--g300)var(--p,0%))}
+.range input::-webkit-slider-thumb{appearance:none;width:18px;height:18px;border-radius:50%;
+  background:var(--wb);cursor:pointer;box-shadow:0 0 0 4px rgba(165,0,255,.25)}
+.range input:active::-webkit-slider-thumb{transform:scale(1.12)}
+/* ---------- OUTPUT ---------- */
+#out{padding:28px 24px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
+#badge{background:var(--wb);color:#fff;font-size:.78rem;padding:4px 10px;border-radius:10px;width:max-content;font-weight:600}
+.metric{display:flex;justify-content:space-between;padding:6px 0;font-size:.92rem}
+.metric .val{font-weight:600}
+.ok{color:var(--ok)} .bad{color:var(--bad)}
+details{border:1px solid var(--g300);border-radius:10px;overflow:hidden}
+summary{list-style:none;cursor:pointer;padding:8px 12px;background:var(--g100);font-size:.9rem}
+summary::-webkit-details-marker{display:none}
+/* background swirl */
+#out::after{content:\"\";position:absolute;right:-90px;bottom:-90px;width:160px;height:160px;border-radius:50%;
+            background:var(--wb);opacity:.07;animation:rot 16s linear infinite}
+@keyframes rot{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
-<div id="wrap">
-  <!-- form -->
+<div id="w">
+  <!-- FORM -->
   <form id="form" class="card" onsubmit="return false;">
     <section>
-      <h2>Параметры</h2>
+      <h2>Категория</h2>
       <label>Категория / предмет
         <select id="cat" disabled placeholder="Загрузка…"></select>
       </label>
     </section>
 
     <section class="grid-2">
-      <label>Цена на WB, ₽<input id="price" type="number" value="500" min="0" step="0.01"></label>
-      <label>Себестоимость, ₽<input id="cost" type="number" value="100" min="0" step="0.01"></label>
+      <label>Цена на WB, ₽
+        <input id="price" type="number" value="500" min="0" step="0.01">
+        <span id="avg" class="meta"></span>
+      </label>
+      <label>Себестоимость, ₽
+        <input id="cost" type="number" value="100" min="0" step="0.01">
+      </label>
     </section>
 
     <section>
-      <h2>Габариты</h2>
+      <h2>Габариты товара</h2>
       <div class="grid-3">
-        <label>Длина, см<input id="len" type="number" value="28" min="0" step="0.1"></label>
-        <label>Ширина, см<input id="wid" type="number" value="13" min="0" step="0.1"></label>
-        <label>Высота, см<input id="hei" type="number" value="13" min="0" step="0.1"></label>
+        <label>Длина, см <input id="len" type="number" value="28" min="0" step="0.1"></label>
+        <label>Ширина, см <input id="wid" type="number" value="13" min="0" step="0.1"></label>
+        <label>Высота, см <input id="hei" type="number" value="13" min="0" step="0.1"></label>
       </div>
-      <label class="inline"><input id="heavy" type="checkbox">Тяжелее 25 кг</label>
+      <div id="volume" class="meta">Объём — 0 л.</div>
+      <label class="inline"><input id="heavy" type="checkbox">Товар тяжелее 25 кг</label>
     </section>
 
     <section class="grid-2">
-      <label>Оборот, дн<input id="turn" type="number" value="33" min="1"></label>
-      <label>% выкупа<input id="redeem" type="number" value="92" min="0" max="100"></label>
+      <label>Оборот, дн <input id="turn" type="number" value="20" min="1"></label>
+      <label>% выкупа <input id="redeem" type="number" value="92" min="0" max="100"></label>
     </section>
 
     <section>
@@ -111,12 +100,12 @@ button.primary:active { transform: none; box-shadow: 0 3px 8px rgba(165,0,255,.1
 
     <section>
       <h2>Модель продаж</h2>
-      <label class="inline"><input id="fbs" type="checkbox" checked>Маркетплейс (FBS)</label>
-      <div id="fbs-wrap" style="padding-left:18px; margin:10px 0 4px;">
-        <div class="range-wrap"><input id="fbsRange" type="range" min="30" max="72" step="18" value="48"></div>
-        <small>Комиссия за доставку: <span id="fbsPerc">21.5 %</span></small>
+      <label class="inline"><input id="fbs" type="checkbox" checked>FBS (везу на склад WB)</label>
+      <div id="fbsWrap" style="padding-left:18px">
+        <span class="meta">Часы до склада: <span id="hourTxt">48</span> ч · Комиссия <span id="percTxt">21.30 %</span></span>
+        <div class="range"><input id="range" type="range" min="30" max="72" step="1" value="48"></div>
       </div>
-      <label class="inline"><input id="fbw" type="checkbox">Поставки на склад (FBW)</label>
+      <label class="inline"><input id="fbw" type="checkbox">Поставки на склад (FBW)</label>
     </section>
 
     <section>
@@ -125,44 +114,126 @@ button.primary:active { transform: none; box-shadow: 0 3px 8px rgba(165,0,255,.1
       <label class="inline"><input type="radio" name="sup" value="mono">Монопаллета</label>
     </section>
 
-    <button class="primary" id="go">Рассчитать</button>
+    <button class="primary" id="calc">Рассчитать</button>
   </form>
 
-  <!-- output -->
+  <!-- OUTPUT -->
   <div id="out" class="card">
-    <h2>Выручка и расходы</h2>
-    <div id="badge">Маркетплейс · 48 ч</div>
-    <div id="tbl"></div>
+    <h2>Выручка и расходы</h2>
+    <div id="badge">—</div>
+
+    <details open>
+      <summary>Показать / скрыть таблицу</summary>
+      <div id="tbl"></div>
+    </details>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
 <script>
-const VAT=0.20, PROFIT=0.20, STORAGE=0.10, FBS={30:19.5,48:21.3,72:23.5};
-const money=v=>v.toLocaleString('ru-RU',{style:'currency',currency:'RUB',minimumFractionDigits:2});
-let CAT=[];
+/* ---------- constants ---------- */
+const VAT = 0.20, STORAGE_RATE = 0.10;
+const FBS_BASE = 19.5, FBS_STEP = 0.10;          // 19,5 % + 0,10 % за каждый час свыше 30
+const money = n => n.toLocaleString('ru-RU',
+            {style:'currency',currency:'RUB',minimumFractionDigits:2});
+let CAT = [];
 
-fetch('categories.json').then(r=>r.json()).then(d=>{
-  CAT=d; const sel=id('cat'); sel.innerHTML=d.map((c,i)=>`<option value="${i}">${(c.item?c.item+' — ':'')+c.category}</option>`).join(''); sel.disabled=false;
-  new TomSelect(sel,{maxOptions:15000,placeholder:'Категория…'});
+/* ---------- load categories ---------- */
+fetch('categories.json')
+  .then(r => r.json())
+  .then(data => {
+    CAT = data;
+    const opts = data.map((c,i)=>
+      `<option value="${i}">${(c.item?c.item+' — ':'')+c.category}</option>`
+    ).join('');
+    const sel = gid('cat');
+    sel.innerHTML = opts; sel.disabled = false;
+    new TomSelect(sel,{maxOptions:15000,placeholder:'Начните вводить…'});
+  });
+
+/* ---------- helpers ---------- */
+const gid = id => document.getElementById(id);
+const qs = q  => document.querySelector(q);
+
+/* ---------- volume live update ---------- */
+['len','wid','hei','heavy'].forEach(id=>{
+  gid(id).addEventListener('input',updateVolume)
 });
+function updateVolume(){
+  const L=+gid('len').value||0,W=+gid('wid').value||0,H=+gid('hei').value||0;
+  const vol = (L*W*H/1000).toFixed(3);
+  gid('volume').textContent = `Объём — ${vol} л.`;
+}
+updateVolume();
 
-id('fbsRange').oninput=e=>{updateSlider();setBadge()};
-function updateSlider(){ const r=id('fbsRange'); r.style.setProperty('--percent',((r.value-30)/42*100)+'%'); id('fbsPerc').textContent=FBS[r.value].toFixed(1)+' %'; }
-updateSlider();
-[id('fbs'),id('fbw')].forEach(el=>el.onchange=setBadge);
-function setBadge(){ let txt=[]; if(id('fbs').checked) txt.push('Маркетплейс · '+id('fbsRange').value+' ч'); if(id('fbw').checked) txt.push('Поставки на склад'); id('badge').textContent=txt.join(' + ')||'—'; }
+/* ---------- slider live ---------- */
+const range = gid('range');
+function updSlider(){
+  const h = +range.value;
+  const perc = FBS_BASE + (h-30)*FBS_STEP;
+  gid('hourTxt').textContent = h;
+  gid('percTxt').textContent = perc.toFixed(2)+' %';
+  range.style.setProperty('--p',((h-30)/42*100)+'%');
+  badgeText();
+}
+range.addEventListener('input',updSlider); updSlider();
 
-id('go').onclick=()=>{const idx=+id('cat').value||0, rec=CAT[idx]||{}; const sell=+id('price').value||0,cost=+id('cost').value||0; const L=+id('len').value||0,W=+id('wid').value||0,H=+id('hei').value||0; const lit=Math.ceil((L*W*H)/1000)*(id('heavy').checked?2:1);
- let commission=0;if(id('fbw').checked)commission+=sell*(+rec.commission_fbw||0)/100;if(id('fbs').checked)commission+=sell*FBS[id('fbsRange').value]/100; const commVat=commission*VAT/(1+VAT);
- const log=lit?75+(lit-1)*15:0, logVat=log*VAT/(1+VAT);
- const stor=lit*STORAGE*(+id('turn').value||0);
- const subtotal=cost+stor+(commission-commVat)+(log-logVat);
- const gross=sell-subtotal; const tRate=parseFloat(docQS('input[name="tax"]:checked').value); const tax=gross>0?gross*tRate:0; const net=gross-tax; const mar=sell?net/sell*100:0;
- const tbl=id('tbl'); tbl.innerHTML='';
- const row=(l,v,c='')=>tbl.insertAdjacentHTML('beforeend',`<div class=metric ${c}><span>${l}</span><span class=val>${v}</span></div>`);
- row('Цена товара','100.00 % '+money(sell)); row('Расходы на WB',(commission/sell*100).toFixed(2)+' % '+money(commission)); row('Перевозка',(log/sell*100).toFixed(2)+' % '+money(log)); row('Налоги',(tax/sell*100).toFixed(2)+' % '+money(tax)); row('Себестоимость','20.00 % '+money(cost)); row('Всего расходов',((tax+subtotal)/sell*100).toFixed(2)+' % '+money(subtotal+tax)); row('Прибыль',mar.toFixed(2)+' % '+money(net),net>=0?'profit':'loss');
- id('out').style.animation='none'; void id('out').offsetWidth; id('out').style.animation=null;};
-function id(x){return document.getElementById(x);} function docQS(q){return document.querySelector(q);} </script>
+/* ---------- badge ---------- */
+['fbs','fbw','range'].forEach(id=>gid(id).addEventListener('input',badgeText));
+function badgeText(){
+  const parts=[];
+  if(gid('fbs').checked) parts.push(`FBS · ${range.value} ч`);
+  if(gid('fbw').checked) parts.push('FBW');
+  gid('badge').textContent = parts.join(' + ') || '—';
+}
+badgeText();
+
+/* ---------- calc ---------- */
+gid('calc').addEventListener('click',()=>{
+  const idx = +gid('cat').value, rec = CAT[idx] || {};
+  const sell = +gid('price').value||0, cost = +gid('cost').value||0;
+  const L=+gid('len').value||0, W=+gid('wid').value||0, H=+gid('hei').value||0;
+  let litres = Math.ceil((L*W*H)/1000);
+  if(gid('heavy').checked) litres*=2;
+
+  /* комиссия */
+  let comm = 0;
+  if(gid('fbw').checked) comm += sell*((rec.commission_fbw)||0)/100;
+  if(gid('fbs').checked){
+    const perc = FBS_BASE + (range.value-30)*FBS_STEP;
+    comm += sell*perc/100;
+  }
+  const commVatBack = comm*VAT/(1+VAT);
+
+  /* логистика */
+  const log = litres?75+(litres-1)*15:0;
+  const logVatBack = log*VAT/(1+VAT);
+
+  /* хранение */
+  const stor = litres*STORAGE_RATE*(+gid('turn').value||0);
+
+  /* налоги */
+  const sub = cost + stor + (comm-commVatBack) + (log-logVatBack);
+  const gross = sell - sub;
+  const taxRate = parseFloat(qs('input[name=\"tax"]:checked').value);
+  const tax = gross>0 ? gross*taxRate : 0;
+  const net = gross - tax;
+  const mar = sell? net/sell*100 : 0;
+
+  /* build table */
+  const t = gid('tbl'); t.innerHTML='';
+  add('Цена товара','100 % '+money(sell));
+  add('Расходы на WB', pct(comm)+' '+money(comm));
+  add('Логистика', pct(log)+' '+money(log));
+  add('Хранение', pct(stor)+' '+money(stor));
+  add('Налоги', pct(tax)+' '+money(tax));
+  add('Себестоимость','20 % '+money(cost));
+  add('Всего расходов', pct(sub+tax)+' '+money(sub+tax));
+  add('Прибыль', mar.toFixed(2)+' % '+money(net), net>=0?'ok':'bad');
+
+  function pct(v){return (sell? (v/sell*100).toFixed(2):'0.00')+' %';}
+  function add(lbl,val,cls=''){t.insertAdjacentHTML('beforeend',`<div class=\"metric ${cls}\"><span>${lbl}</span><span class=\"val\">${val}</span></div>`);}
+});
+</script>
 </body>
 </html>
